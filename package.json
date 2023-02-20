@@ -102,7 +102,8 @@
     "astro-dev": "astro dev",
     "astro-start": "astro dev",
     "astro-build": "astro build",
-    "astro-preview": "astro preview"
+    "astro-preview": "astro preview",
+    "astro-lint": "prettier --config site-new/.prettierrc.json -c --cache site-new"
   },
   "peerDependencies": {
     "@popperjs/core": "^2.11.6"
@@ -150,6 +151,8 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
+    "prettier": "^2.8.4",
+    "prettier-plugin-astro": "^0.8.0",
     "rollup": "^3.15.0",
     "rollup-plugin-istanbul": "^4.0.0",
     "rtlcss": "^4.0.0",

@@ -1,11 +1,11 @@
 ---
-import type { Layout } from "../../libs/layout";
+import type { Layout } from '../../libs/layout'
 
 interface Props {
-  layout?: Layout;
+  layout?: Layout
 }
 
-const { layout } = Astro.props;
+const { layout } = Astro.props
 ---
 
 <!--
@@ -16,7 +16,7 @@ const { layout } = Astro.props;
   <script src="/docs/{{ .Site.Params.docs_version }}/dist/js/bootstrap.bundle.js"></script>
 {{- end }}
 -->{
-  import.meta.env.MODE == "production" ? (
+  import.meta.env.MODE == 'production' ? (
     <script
       src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
@@ -28,7 +28,7 @@ const { layout } = Astro.props;
 }
 
 {
-  layout == "docs" && (
+  layout == 'docs' && (
     <>
       <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3" />
       <script src="https://cdn.jsdelivr.net/npm/@stackblitz/sdk@1/bundles/sdk.umd.js" />
