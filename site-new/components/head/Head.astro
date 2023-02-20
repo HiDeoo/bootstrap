@@ -13,6 +13,8 @@ interface Props {
 }
 
 const { description, layout, robots } = Astro.props
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
 ---
 
 <meta charset="UTF-8" />
@@ -29,7 +31,7 @@ const { description, layout, robots } = Astro.props
 <title>{getConfig().title}</title>
 <!--TODO: handle <title>{{ if .IsHome }}{{ .Site.Title | markdownify }} · {{ .Site.Params.subtitle | markdownify }}{{ else }}{{ .Title | markdownify }} · {{ .Site.Title | markdownify }} v{{ .Site.Params.docs_version }}{{ end }}</title>-->
 
-<!--TODO: handle <link rel="canonical" href="{{ .Permalink }}">-->
+<link rel="canonical" href={canonicalUrl} />
 
 {layout === 'docs' && <link rel="preconnect" href="https://AK7KMZKZHQ-dsn.algolia.net" crossorigin />}
 {robots && <meta name="robots" content={robots} />}

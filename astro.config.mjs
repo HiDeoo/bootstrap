@@ -6,4 +6,5 @@ export default defineConfig({
   srcDir: "./site-new",
   // TODO(HiDeoo) Rename or remove later
   outDir: "./dist-site-new",
+  site: "https://getbootstrap.com/",
 });
