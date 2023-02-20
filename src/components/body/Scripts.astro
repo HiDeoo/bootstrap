@@ -1,12 +1,11 @@
 ---
-// TODO: avoid to copy/paste props from Layout.astro
-export interface Props {
-	description: string;
-	layout: string; // TODO: better handling? It represents .Page.Layout // At least should be a Type
-	robots: string;
+import type { Layout } from "../../libs/layout";
+
+interface Props {
+  layout?: Layout;
 }
 
-const { description, layout, robots } = Astro.props;
+const { layout } = Astro.props;
 ---
 
 <!--
@@ -16,17 +15,25 @@ const { description, layout, robots } = Astro.props;
 {{ else -}}
   <script src="/docs/{{ .Site.Params.docs_version }}/dist/js/bootstrap.bundle.js"></script>
 {{- end }}
--->
-{
-import.meta.env.MODE == "production"
-  ? <script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  : <script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.js"></script>
+-->{
+  import.meta.env.MODE == "production" ? (
+    <script
+      src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    />
+  ) : (
+    <script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.js" />
+  )
 }
 
 {
-layout == "docs" && 
-<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-<script src="https://cdn.jsdelivr.net/npm/@stackblitz/sdk@1/bundles/sdk.umd.js"></script>
+  layout == "docs" && (
+    <>
+      <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3" />
+      <script src="https://cdn.jsdelivr.net/npm/@stackblitz/sdk@1/bundles/sdk.umd.js" />
+    </>
+  )
 }
 
 <!--
