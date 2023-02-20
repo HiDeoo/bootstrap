@@ -36,6 +36,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
 {layout === 'docs' && <link rel="preconnect" href="https://AK7KMZKZHQ-dsn.algolia.net" crossorigin />}
 {robots && <meta name="robots" content={robots} />}
 
+<!-- TODO(HiDeoo) Broken atm -->
 <script src={`/docs/${getConfig().params.docs_version}/assets/js/color-modes.js`}></script>
 
 <!--
