@@ -40,11 +40,10 @@ const { layout, title } = Astro.props
        -->
     </a>
 
-    <!-- TODO(HiDeoo) The version is broken here -->
     <div class="d-flex">
       {
         layout === 'docs' && (
-          <div class="bd-search" id="docsearch" data-bd-docs-version="{{ .Site.Params.docs_version }}" />
+          <div class="bd-search" id="docsearch" data-bd-docs-version={getConfig().params.docs_version} />
         )
       }
 
