@@ -7,13 +7,14 @@ import Social from './Social.astro'
 import Analytics from './Analytics.astro'
 
 interface Props {
-  description: string | undefined
+  description: string
   layout: Layout
   robots: string | undefined
-  title: string | undefined
+  thumbnail: string
+  title: string
 }
 
-const { description, layout, robots, title } = Astro.props
+const { description, layout, robots, thumbnail, title } = Astro.props
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
 
@@ -26,7 +27,7 @@ const pageTitle = isHome
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta name="description" content={description ?? getConfig().params.description} />
+<meta name="description" content={description} />
 <!--TODO: handle | markdownify -->
 <!-- TODO(HiDeoo) markdownify in a meta tag? -->
 
@@ -43,7 +44,7 @@ const pageTitle = isHome
 {robots && <meta name="robots" content={robots} />}
 
 <!-- TODO(HiDeoo) Broken link atm -->
-<script src={getVersionedDocsPath('/assets/js/color-modes.js')}></script>
+<script src={getVersionedDocsPath('assets/js/color-modes.js')}></script>
 
 <!--
 			TODO: handle relURL?? or use public??
@@ -56,5 +57,5 @@ const pageTitle = isHome
 
 <Stylesheet layout={layout} />
 <Favicons />
-<Social />
+<Social description={description} thumbnail={thumbnail} title={title} />
 <Analytics />

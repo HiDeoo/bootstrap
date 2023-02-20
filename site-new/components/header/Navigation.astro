@@ -81,10 +81,10 @@ const { layout, title } = Astro.props
         <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
           <LinkItem
             active={layout === 'docs'}
-            href={getVersionedDocsPath('/getting-started/introduction/')}
+            href={getVersionedDocsPath('getting-started/introduction/')}
             text="Docs"
           />
-          <LinkItem active={typeof title !== undefined} href={getVersionedDocsPath('/examples/')} text="Examples" />
+          <LinkItem active={typeof title !== undefined} href={getVersionedDocsPath('examples/')} text="Examples" />
           <LinkItem href={getConfig().params.icons} target="_blank" rel="noopener" text="Icons" />
           <LinkItem href={getConfig().params.themes} target="_blank" rel="noopener" text="Themes" />
           <LinkItem href={getConfig().params.blog} target="_blank" rel="noopener" text="Blog" />
