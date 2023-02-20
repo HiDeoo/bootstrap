@@ -1,10 +1,8 @@
 ---
 import type { Layout } from '../libs/layout'
-import Skippy from '../components/header/Skippy.astro'
-import Icons from '../components/Icons.astro'
-import Navigation from '../components/header/Navigation.astro'
-import Scripts from '../components/Scripts.astro'
 import Head from '../components/head/Head.astro'
+import Header from '../components/header/Header.astro'
+import Scripts from '../components/Scripts.astro'
 
 interface Props {
   description?: string
@@ -23,9 +21,7 @@ const { description, layout, robots } = Astro.props
   <body
     ><!--TODO: handle {{ block "body_override" . }}<body>{{ end }} -->
 
-    <Skippy layout={layout} />
-    <Icons />
-    <Navigation layout={layout} />
+    <Header layout={layout} />
 
     <!-- TODO:
 			{{ block "main" . }}
