@@ -100,10 +100,9 @@
     "watch-js-main": "nodemon --watch js/src/ --ext js --exec \"npm-run-all js-lint js-compile\"",
     "watch-js-docs": "nodemon --watch site/assets/js/ --ext js --exec \"npm run js-lint\"",
     "astro-dev": "astro dev",
-		"astro-start": "astro dev",
-		"astro-build": "astro build",
-		"astro-preview": "astro preview",
-		"astro": "astro"
+    "astro-start": "astro dev",
+    "astro-build": "astro build",
+    "astro-preview": "astro preview"
   },
   "peerDependencies": {
     "@popperjs/core": "^2.11.6"
