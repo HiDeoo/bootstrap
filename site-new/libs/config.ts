@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import yaml from 'js-yaml'
 import { z } from 'zod'
 
-let config: Config
+let config: Config | undefined
 
 // A helper to get the config loaded fom the `config.yml` file. If the config does not match the `configSchema` below,
 // an error is thrown to indicate that the config file is invalid and some action is required.
