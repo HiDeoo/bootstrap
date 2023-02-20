@@ -2,7 +2,3 @@
 
 # TODO(HiDeoo) rename later
 site-new/scss
-
-# Disabled for base layout due to an Astro compiler bug
-# https://github.com/withastro/prettier-plugin-astro/issues/316
-site-new/layouts/BaseLayout.astro

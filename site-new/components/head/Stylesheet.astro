@@ -38,8 +38,8 @@ TODO(HiDeoo) This should prolly use getVersionedDocsPath()
 {{- $targetDocsCssPath := path.Join "/docs" .Site.Params.docs_version "assets/css/docs.css" -}}
 {{- $sassOptions := dict "targetPath" $targetDocsCssPath "outputStyle" "expanded" "precision" 6 -}}
 {{- $postcssOptions := dict "use" "autoprefixer" "noMap" true -}}
-TODO(HiDeoo) The current import of the style does not respect any of this, figure out if we can port it back to the
-Astro implementation or we need to move out the stylesheets processing to a custom adapter.
+TODO(HiDeoo) The current import of the style does not respect any of the config below, figure out if we can port it back
+to the Astro implementation or we need to move out the stylesheets processing to a custom adapter.
 {{ if eq hugo.Environment "production" -}}
   {{- $sassOptions = merge $sassOptions (dict "outputStyle" "compressed") -}}
 {{- end -}}
@@ -49,3 +49,8 @@ Astro implementation or we need to move out the stylesheets processing to a cust
 <link href="{{ $style.Permalink | relURL }}" rel="stylesheet">
 {{- end }}
 -->
+
+<!-- TODO(HiDeoo) See todo above regarding style imports -->
+<style lang="scss">
+  @import '../../scss/docs';
+</style>
