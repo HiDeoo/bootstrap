@@ -6,6 +6,7 @@ TODO: handle
 
 {{- $pageTitle := .Title | markdownify -}}
 {{- $pageDescription := .Page.Params.description | default .Site.Params.description | markdownify -}}
+TODO(HiDeoo) This should prolly use getVersionedDocsPath()
 {{- $socialImagePath := printf "/docs/%s/assets" .Site.Params.docs_version -}}
 
 {{- if .Page.Params.thumbnail -}}

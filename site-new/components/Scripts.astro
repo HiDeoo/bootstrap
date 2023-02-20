@@ -10,6 +10,7 @@ const { layout } = Astro.props
 
 <!--
   TODO: Handle correctly the origin of bootstrap.bundle.*.js (from the docs and not from the CDN)
+  TODO(HiDeoo) This should use getVersionedDocsPath()
 {{ if eq hugo.Environment "production" -}}
   <script src="/docs/{{ .Site.Params.docs_version }}/dist/js/bootstrap.bundle.min.js" {{ printf "integrity=%q" .Site.Params.cdn.js_bundle_hash | safeHTMLAttr }} crossorigin="anonymous"></script>
 {{ else -}}
@@ -39,6 +40,7 @@ const { layout } = Astro.props
 <!--
 {{- $vendor := resources.Match "js/vendor/*.js" -}}
 {{- $js := resources.Match "js/*.js" -}}
+TODO(HiDeoo) This should prolly use getVersionedDocsPath()
 {{- $targetDocsJSPath := path.Join "/docs" .Site.Params.docs_version "assets/js/docs.js" -}}
 {{- $docsJs := append $js $vendor | resources.Concat $targetDocsJSPath -}}
 

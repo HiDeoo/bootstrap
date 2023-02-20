@@ -29,6 +29,12 @@ export function getConfig(): Config {
   }
 }
 
+export function getVersionedDocsPath(path: string): string {
+  const { docs_version } = getConfig().params
+
+  return `/docs/${docs_version}/${path.replace(/^\//, '')}`
+}
+
 // The config schema used to validate the config file content and ensure all values required by the site are valid.
 const configSchema = z.object({
   params: z.object({
