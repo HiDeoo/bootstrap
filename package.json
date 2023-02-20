@@ -103,7 +103,7 @@
     "astro-start": "astro dev",
     "astro-build": "astro build",
     "astro-preview": "astro preview",
-    "astro-lint": "prettier --config site-new/.prettierrc.json -c --cache site-new && astro check"
+    "astro-lint": "prettier --config site-new/.prettierrc.json -c --cache site-new && astro check && tsc --noEmit"
   },
   "peerDependencies": {
     "@popperjs/core": "^2.11.6"
