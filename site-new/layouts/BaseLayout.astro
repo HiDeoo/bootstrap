@@ -1,5 +1,5 @@
 ---
-import { config } from "../libs/config";
+import { getConfig } from "../libs/config";
 import type { Layout } from "../libs/layout";
 import Stylesheet from "../components/head/Stylesheet.astro";
 import Favicons from "../components/head/Favicons.astro";
@@ -25,36 +25,23 @@ const { description, layout, robots } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta
-      name="description"
-      content={description ?? config.params.description}
-    />
+    <meta name="description" content={description ?? getConfig().params.description} />
     <!--TODO: handle | markdownify -->
 
-    <meta name="author" content={config.params.authors} />
+    <meta name="author" content={getConfig().params.authors} />
     <meta name="generator" content={Astro.generator} />
     <meta name="docsearch:language" content="en" />
-    <meta name="docsearch:version" content={config.params.docs_version} />
+    <meta name="docsearch:version" content={getConfig().params.docs_version} />
 
-    <title>{config.title}</title>
+    <title>{getConfig().title}</title>
     <!--TODO: handle <title>{{ if .IsHome }}{{ .Site.Title | markdownify }} · {{ .Site.Params.subtitle | markdownify }}{{ else }}{{ .Title | markdownify }} · {{ .Site.Title | markdownify }} v{{ .Site.Params.docs_version }}{{ end }}</title>-->
 
     <!--TODO: handle <link rel="canonical" href="{{ .Permalink }}">-->
 
-    {
-      layout === "docs" && (
-        <link
-          rel="preconnect"
-          href="https://AK7KMZKZHQ-dsn.algolia.net"
-          crossorigin
-        />
-      )
-    }
+    {layout === 'docs' && <link rel="preconnect" href="https://AK7KMZKZHQ-dsn.algolia.net" crossorigin />}
     {robots && <meta name="robots" content={robots} />}
 
-    <script
-      src={"/docs/" + config.params.docs_version + "/assets/js/color-modes.js"}
-    ></script>
+    <script src={`/docs/${getConfig().params.docs_version}/assets/js/color-modes.js`}></script>
 
     <!--
 			TODO: handle relURL?? or use public??

@@ -1,106 +1,48 @@
-export const config = {
-  params: {
-    authors: "Mark Otto, Jacob Thornton, and Bootstrap contributors",
-    blog: "https://blog.getbootstrap.com/",
-    description: "Powerful, extensible, and feature-packed frontend toolkit. Build and customize with Sass, utilize prebuilt grid system and components, and bring projects to life with powerful JavaScript plugins.",
-    docs_version: "5.3",
-    github_org: "https://github.com/twbs",
-    icons: "https://icons.getbootstrap.com/",
-    opencollective: "https://opencollective.com/bootstrap",
-    themes: "https://themes.getbootstrap.com/",
-    twitter: "getbootstrap"
-  },
-  title: "Bootstrap"
+import fs from 'node:fs'
+import yaml from 'js-yaml'
+import { z } from 'zod'
+
+let config: Config
+
+// A helper to get the config loaded fom the `config.yml` file. If the config does not match the `configSchema` below,
+// an error is thrown to indicate that the config file is invalid and some action is required.
+export function getConfig(): Config {
+  if (config) {
+    // Returns the config if it has already been loaded.
+    return config
+  }
+
+  try {
+    // Load the config from the `config.yml` file.
+    const rawConfig = yaml.load(fs.readFileSync('./config.yml', 'utf8'))
+
+    // Parse the config using the config schema to validate its content and get back a fully typed config object.
+    config = configSchema.parse(rawConfig)
+
+    return config
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      console.error('The `config.yml` file content is invalid:', error.issues)
+    }
+
+    throw new Error('Failed to load configuration from `config.yml`', { cause: error })
+  }
 }
 
-/*
+// The config schema used to validate the config file content and ensure all values required by the site are valid.
+const configSchema = z.object({
+  params: z.object({
+    authors: z.string(),
+    blog: z.string().url(),
+    description: z.string(),
+    docs_version: z.string().regex(/^\d+\.\d+$/),
+    github_org: z.string().url(),
+    icons: z.string().url(),
+    opencollective: z.string().url(),
+    themes: z.string().url(),
+    twitter: z.string(),
+  }),
+  title: z.string(),
+})
 
-languageCode:           "en"
-baseURL:                "https://getbootstrap.com"
-
-security:
-  enableInlineShortcodes: true
-  funcs:
-    getenv:
-      - ^HUGO_
-      - NETLIFY
-
-markup:
-  goldmark:
-    renderer:
-      unsafe:           true
-  highlight:
-    noClasses:          false
-  tableOfContents:
-    startLevel:         2
-    endLevel:           6
-
-buildDrafts:            true
-buildFuture:            true
-
-enableRobotsTXT:        true
-metaDataFormat:         "yaml"
-disableKinds:           ["404", "taxonomy", "term", "RSS"]
-
-publishDir:             "_site"
-
-module:
-  mounts:
-    - source:           dist
-      target:           static/docs/5.3/dist
-    - source:           site/assets
-      target:           assets
-    - source:           site/content
-      target:           content
-    - source:           site/data
-      target:           data
-    - source:           site/layouts
-      target:           layouts
-    - source:           site/static
-      target:           static
-    - source:           site/static/docs/5.3/assets/img/favicons/apple-touch-icon.png
-      target:           static/apple-touch-icon.png
-    - source:           site/static/docs/5.3/assets/img/favicons/favicon.ico
-      target:           static/favicon.ico
-
-params:
-  subtitle:             "The most popular HTML, CSS, and JS library in the world."
-  
-  
-
-  current_version:      "5.3.0-alpha1"
-  current_ruby_version: "5.3.0-alpha1"
-  
-  rfs_version:          "v9.0.6"
-  
-  repo:                 "https://github.com/twbs/bootstrap"
-  
-  
-  
-  
-  swag:                 "https://cottonbureau.com/people/bootstrap"
-
-  download:
-    source:             "https://github.com/twbs/bootstrap/archive/v5.3.0-alpha1.zip"
-    dist:               "https://github.com/twbs/bootstrap/releases/download/v5.3.0-alpha1/bootstrap-5.3.0-alpha1-dist.zip"
-    dist_examples:      "https://github.com/twbs/bootstrap/releases/download/v5.3.0-alpha1/bootstrap-5.3.0-alpha1-examples.zip"
-
-  cdn:
-    # See https://www.srihash.org for info on how to generate the hashes
-    css:              "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-    css_hash:         "sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-    css_rtl:          "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.rtl.min.css"
-    css_rtl_hash:     "sha384-WJUUqfoMmnfkBLne5uxXj+na/c7sesSJ32gI7GfCk4zO4GthUKhSEGyvQ839BC51"
-    js:               "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-    js_hash:          "sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
-    js_bundle:        "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    js_bundle_hash:   "sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-    popper:           "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    popper_hash:      "sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-    popper_esm:       "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/esm/popper.min.js"
-
-  anchors:
-    min: 2
-    max: 5
-
-*/
+type Config = z.infer<typeof configSchema>

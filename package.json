@@ -116,6 +116,7 @@
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-replace": "^5.0.2",
+    "@types/js-yaml": "^4.0.5",
     "astro": "^2.0.14",
     "autoprefixer": "^10.4.13",
     "bundlewatch": "^0.3.3",
@@ -134,6 +135,7 @@
     "ip": "^2.0.0",
     "jasmine": "^4.5.0",
     "jquery": "^3.6.3",
+    "js-yaml": "^4.1.0",
     "karma": "^6.4.1",
     "karma-browserstack-launcher": "1.4.0",
     "karma-chrome-launcher": "^3.1.1",
@@ -157,7 +159,8 @@
     "stylelint": "^14.16.1",
     "stylelint-config-twbs-bootstrap": "^7.0.0",
     "terser": "5.16.0",
-    "vnu-jar": "22.9.29"
+    "vnu-jar": "22.9.29",
+    "zod": "^3.20.6"
   },
   "files": [
     "dist/{css,js}/*.{css,js,map}",
