@@ -16,7 +16,7 @@ const { layout } = Astro.props
   <script src="/docs/{{ .Site.Params.docs_version }}/dist/js/bootstrap.bundle.js"></script>
 {{- end }}
 -->{
-  import.meta.env.MODE === 'production' ? (
+  import.meta.env.PROD ? (
     <script
       src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
