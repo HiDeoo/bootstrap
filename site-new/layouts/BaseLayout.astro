@@ -7,7 +7,7 @@ import Social from '../components/head/Social.astro'
 import Analytics from '../components/head/Analytics.astro'
 import Skippy from '../components/body/Skippy.astro'
 import Icons from '../components/body/Icons.astro'
-import DocsNavbar from '../components/body/DocsNavbar.astro'
+import Navigation from '../components/header/Navigation.astro'
 import Scripts from '../components/body/Scripts.astro'
 
 interface Props {
@@ -60,8 +60,7 @@ const { description, layout, robots } = Astro.props
 
     <Skippy layout={layout} />
     <Icons />
-    <!-- TODO(HiDeoo) A bit weird to have this named DocsNavbar if this is included everywhere, looks like a header. -->
-    <DocsNavbar layout={layout} />
+    <Navigation layout={layout} />
 
     <!-- TODO:
 			{{ block "main" . }}
