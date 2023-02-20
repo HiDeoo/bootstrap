@@ -1,15 +1,15 @@
 ---
 import { getConfig } from '../../libs/config'
 import type { Layout } from '../../libs/layout'
+import LinkItem from './LinkItem.astro'
 import Versions from './Versions.astro'
 
-// TODO: avoid to copy/paste props from Layout.astro
 interface Props {
   layout: Layout
   title?: string // TODO: warning should be linked to .Page.title
 }
 
-const { layout } = Astro.props
+const { layout, title } = Astro.props
 ---
 
 <header class="navbar navbar-expand-lg bd-navbar sticky-top">
@@ -79,27 +79,25 @@ const { layout } = Astro.props
       <div class="offcanvas-body p-4 pt-0 p-lg-0">
         <hr class="d-lg-none text-white-50" />
         <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
-          <li class="nav-item col-6 col-lg-auto">
-            <!-- TODO: better way to handle "active" and "aria-current" ? -->
-            <!-- <a class:list={['nav-link', 'py-2', 'px-0', 'px-lg-2', {active: layout === "docs"}]} aria-current={layout === "docs"} href=`/docs/${getConfig().params.docs_version}/getting-started/introduction/` onclick="ga('send', 'event', 'Navbar', 'Community links', 'Docs');">Docs</a> -->
-          </li>
-          <li class="nav-item col-6 col-lg-auto">
-            <!-- <a class:list={['nav-link', 'py-2', 'px-0', 'px-lg-2', {active: title}]} aria-current={title} href=`/docs/${getConfig().params.docs_version}/examples/` onclick="ga('send', 'event', 'Navbar', 'Community links', 'Examples');">Examples</a> -->
-          </li>
-          <li class="nav-item col-6 col-lg-auto">
-            <!-- <a class="nav-link py-2 px-0 px-lg-2" href={getConfig().params.icons} onclick="ga('send', 'event', 'Navbar', 'Community links', 'Icons');" target="_blank" rel="noopener">Icons</a> -->
-          </li>
-          <li class="nav-item col-6 col-lg-auto">
-            <!-- <a class="nav-link py-2 px-0 px-lg-2" href={getConfig().params.themes} onclick="ga('send', 'event', 'Navbar', 'Community links', 'Themes');" target="_blank" rel="noopener">Themes</a> -->
-          </li>
-          <li class="nav-item col-6 col-lg-auto">
-            <!-- <a class="nav-link py-2 px-0 px-lg-2" href={getConfig().params.blog} onclick="ga('send', 'event', 'Navbar', 'Community links', 'Blog');" target="_blank" rel="noopener">Blog</a> -->
-          </li>
+          <LinkItem
+            active={layout === 'docs'}
+            href={`/docs/${getConfig().params.docs_version}/getting-started/introduction/`}
+            text="Docs"
+          />
+          <LinkItem
+            active={typeof title !== undefined}
+            href={`/docs/${getConfig().params.docs_version}/examples/`}
+            text="Examples"
+          />
+          <LinkItem href={getConfig().params.icons} target="_blank" rel="noopener" text="Icons" />
+          <LinkItem href={getConfig().params.themes} target="_blank" rel="noopener" text="Themes" />
+          <LinkItem href={getConfig().params.blog} target="_blank" rel="noopener" text="Blog" />
         </ul>
 
         <hr class="d-lg-none text-white-50" />
 
         <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+          <!-- TODO(HiDeoo) should be a LinkItem but requires some refactors first -->
           <li class="nav-item col-6 col-lg-auto">
             <a class="nav-link py-2 px-0 px-lg-2" href={getConfig().params.github_org} target="_blank" rel="noopener">
               <!--TODO
@@ -108,6 +106,7 @@ const { layout } = Astro.props
               <small class="d-lg-none ms-2">GitHub</small>
             </a>
           </li>
+          <!-- TODO(HiDeoo) should be a LinkItem but requires some refactors first -->
           <li class="nav-item col-6 col-lg-auto">
             <!-- <a class="nav-link py-2 px-0 px-lg-2" href=`https://twitter.com/${getConfig().params.twitter}` target="_blank" rel="noopener"> -->
             <!--TODO
@@ -116,6 +115,7 @@ const { layout } = Astro.props
             <small class="d-lg-none ms-2">Twitter</small>
             <!-- </a> -->
           </li>
+          <!-- TODO(HiDeoo) should be a LinkItem but requires some refactors first -->
           <li class="nav-item col-6 col-lg-auto">
             <a
               class="nav-link py-2 px-0 px-lg-2"
