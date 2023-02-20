@@ -45,6 +45,7 @@ const configSchema = z.object({
     github_org: z.string().url(),
     icons: z.string().url(),
     opencollective: z.string().url(),
+    subtitle: z.string(),
     themes: z.string().url(),
     twitter: z.string(),
   }),

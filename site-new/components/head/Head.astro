@@ -10,11 +10,17 @@ interface Props {
   description: string | undefined
   layout: Layout
   robots: string | undefined
+  title: string | undefined
 }
 
-const { description, layout, robots } = Astro.props
+const { description, layout, robots, title } = Astro.props
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
+
+const isHome = Astro.url.pathname === '/'
+const pageTitle = isHome
+  ? `${getConfig().title} · ${getConfig().params.subtitle}`
+  : `${title} · ${getConfig().title} v${getConfig().params.docs_version}`
 ---
 
 <meta charset="UTF-8" />
@@ -22,14 +28,14 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
 
 <meta name="description" content={description ?? getConfig().params.description} />
 <!--TODO: handle | markdownify -->
+<!-- TODO(HiDeoo) markdownify in a meta tag? -->
 
 <meta name="author" content={getConfig().params.authors} />
 <meta name="generator" content={Astro.generator} />
 <meta name="docsearch:language" content="en" />
 <meta name="docsearch:version" content={getConfig().params.docs_version} />
 
-<title>{getConfig().title}</title>
-<!--TODO: handle <title>{{ if .IsHome }}{{ .Site.Title | markdownify }} · {{ .Site.Params.subtitle | markdownify }}{{ else }}{{ .Title | markdownify }} · {{ .Site.Title | markdownify }} v{{ .Site.Params.docs_version }}{{ end }}</title>-->
+<title>{pageTitle}</title>
 
 <link rel="canonical" href={canonicalUrl} />
 
@@ -45,6 +51,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
 			{{- $colorModeJS := printf "/docs/%s/assets/js/color-modes.js" $.Site.Params.docs_version -}}
 			<script src="{{ $colorModeJS | relURL }}"></script>
 		-->
+<!-- TODO(HiDeoo) where does this file comes? Generated? -->
 <!--<script is:inline src="/color-script.js"></script>-->
 
 <Stylesheet layout={layout} />
