@@ -1,12 +1,12 @@
 ---
 import { getVersionedDocsPath } from '../../libs/config'
+import DropletFillIcon from '../icons/DropletFillIcon.astro'
 ---
 
 <section class="row g-3 g-md-5 pb-md-5 mb-5 align-items-center">
   <div class="col-lg-6">
     <div class="masthead-followup-icon d-inline-block mb-3" style="--bg-rgb: var(--bd-violet-rgb);">
-      <!--TODO: handle partial icons -->
-      <!--{{ partial "icons/droplet-fill.svg" (dict "width" "32" "height" "32") }}-->
+      <DropletFillIcon height={32} width={32} />
     </div>
     <h2 class="display-5 mb-3 fw-semibold lh-sm">Make it yours with official Bootstrap Themes</h2>
     <!--TODO: handle .Site.Params.themes-->
