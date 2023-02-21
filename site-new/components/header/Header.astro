@@ -6,11 +6,12 @@ import Navigation from './Navigation.astro'
 
 interface Props {
   layout: Layout
+  title: string
 }
 
-const { layout } = Astro.props
+const { layout, title } = Astro.props
 ---
 
 <Skippy layout={layout} />
 <Icons />
-<Navigation layout={layout} />
+<Navigation layout={layout} title={title} />
