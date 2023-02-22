@@ -1,4 +1,5 @@
 ---
+import type { HTMLAttributes } from 'astro/types'
 import { getConfig } from '../libs/config'
 import type { Layout } from '../libs/layout'
 import Head from '../components/head/Head.astro'
@@ -13,16 +14,23 @@ interface Props {
     title?: string
   }
   layout?: Layout
+  overrides?: {
+    body?: HTMLAttributes<'body'>
+    main?: HTMLAttributes<'main'>
+  }
   robots?: string
 }
 
-const { frontmatter, layout, robots } = Astro.props
+const { frontmatter, layout, overrides, robots } = Astro.props
 
 // TODO(HiDeoo) This should probably be refactored to use a content collection when I get a better understanding of the
 // structure of the docs.
 const title = frontmatter?.title ?? getConfig().title
 const description = frontmatter?.description ?? getConfig().params.description
 const thumbnail = frontmatter?.thumbnail ? `img/${frontmatter.thumbnail}` : 'brand/bootstrap-social.png'
+
+const bodyProps = overrides?.body ?? {}
+const mainProps = overrides?.main ?? {}
 ---
 
 <!DOCTYPE html>
@@ -30,16 +38,10 @@ const thumbnail = frontmatter?.thumbnail ? `img/${frontmatter.thumbnail}` : 'bra
   <head>
     <Head description={description} layout={layout} robots={robots} thumbnail={thumbnail} title={title} />
   </head>
-  <body
-    ><!--TODO: handle {{ block "body_override" . }}<body>{{ end }} -->
-
+  <body {...bodyProps}>
     <Header layout={layout} title={title} />
 
-    <!-- TODO:
-			{{ block "main" . }}
-			{{ end }}
-		-->
-    <main>
+    <main {...mainProps}>
       <slot />
     </main>
 
