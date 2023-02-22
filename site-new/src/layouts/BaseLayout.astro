@@ -1,8 +1,7 @@
 ---
 import type { MarkdownLayoutProps } from 'astro'
-import type { HTMLAttributes } from 'astro/types'
 import { getConfig } from '../libs/config'
-import type { Layout } from '../libs/layout'
+import type { Layout, LayoutOverridesHTMLAttributes } from '../libs/layout'
 import Head from '../components/head/Head.astro'
 import Header from '../components/header/Header.astro'
 import Scripts from '../components/Scripts.astro'
@@ -17,8 +16,8 @@ type Props = {
   // An object containing HTML attributes that can be overridden for some HTML elements used in the base layout keyed by
   // HTML element names.
   overrides?: {
-    body?: HTMLAttributes<'body'>
-    main?: HTMLAttributes<'main'>
+    body?: LayoutOverridesHTMLAttributes<'body'>
+    main?: LayoutOverridesHTMLAttributes<'main'>
   }
   // A string containing the robots meta tag content. If not set, the tag will not be rendered.
   robots?: string
