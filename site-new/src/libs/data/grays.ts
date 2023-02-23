@@ -19,8 +19,6 @@ export function getGrays(): Grays {
     // Parse the config using the config schema to validate its content and get back a fully typed config object.
     grays = configSchema.parse(rawConfig)
 
-    console.log(grays)
-
     return grays
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -32,9 +30,11 @@ export function getGrays(): Grays {
 }
 
 // The config schema used to validate the grays config file content and ensure all values required by the site are valid.
-const configSchema = z.object({
-  name: z.number(),
-  hex: z.string()
-}).array()
+const configSchema = z
+  .object({
+    name: z.number(),
+    hex: z.string(),
+  })
+  .array()
 
 type Grays = z.infer<typeof configSchema>
