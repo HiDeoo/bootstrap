@@ -1,17 +1,17 @@
 ---
-import type * as shiki from 'shiki'
-import { Code } from 'astro/components'
+import { Prism } from '@astrojs/prism'
 
 interface Props {
   code: string
-  // https://github.com/shikijs/shiki/blob/main/docs/languages.md#all-languages
-  lang: shiki.Lang | shiki.ILanguageRegistration
+  // https://prismjs.com/#supported-languages
+  lang: string
 }
 
 const { code, lang } = Astro.props
 
 // TODO(HiDeoo) Style (We use Chroma style overriden in _syntax.scss)
 // TODO(HiDeoo) sh $ prefix
+// TODO(HiDeoo) tabindex on pre (or maybe not https://github.com/alecthomas/chroma/pull/736)
 
 // TODO(HiDeoo) Finish porting site/assets/js/code-examples.js
 //   // wrap programmatically code blocks and add copy btn.
@@ -102,6 +102,6 @@ const { code, lang } = Astro.props
     </button>
   </div>
   <div class="highlight">
-    <Code code={code} lang={lang} />
+    <Prism code={code} lang={lang} />
   </div>
 </div>

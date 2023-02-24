@@ -44,7 +44,14 @@ const configSchema = z.object({
   params: z.object({
     authors: z.string(),
     blog: z.string().url(),
+    cdn: z.object({
+      css: z.string().url(),
+      css_hash: z.string(),
+      js_bundle: z.string().url(),
+      js_bundle_hash: z.string(),
+    }),
     current_version: z.string().regex(semverRegex),
+    current_ruby_version: z.string().regex(semverRegex),
     description: z.string(),
     docs_version: z.string().regex(/^\d+\.\d+$/),
     github_org: z.string().url(),
