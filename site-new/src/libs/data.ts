@@ -28,6 +28,13 @@ const dataDefinitions = {
 
       return grays
     }),
+  plugins: z
+    .object({
+      description: z.string(),
+      link: z.string().startsWith('components/'),
+      name: z.string(),
+    })
+    .array(),
 } satisfies Record<string, DataSchema>
 
 let data = new Map<DataType, z.infer<DataSchema>>()
