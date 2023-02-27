@@ -105,6 +105,7 @@ if (frontmatter?.toc) {
             <div class="row g-3">
               {frontmatter.sections.map((section) => (
                 <div class="col-md-6">
+                  {/* TODO(HiDeoo) Fix URLs and sanitize them */}
                   <a class="d-block text-decoration-none" href="../{{ urlize .title }}/">
                     <strong class="d-block h5 mb-0">{section.title}</strong>
                     <span class="text-secondary">{section.description}</span>
