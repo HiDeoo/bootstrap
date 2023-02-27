@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx'
 import type { AstroIntegration } from 'astro'
 import autoImport from 'astro-auto-import'
 import { rehypeBsTable } from './rehype'
-import { remarkBsParam } from './remark'
+import { remarkBsParam, remarkBsDocsref } from './remark'
 
 // TODO(HiDeoo) Fix path when moving to `site`
 // The docs directory path relative to the root of the project.
@@ -33,7 +33,7 @@ export function bootstrap(): AstroIntegration[] {
           updateConfig({
             markdown: {
               rehypePlugins: [rehypeBsTable],
-              remarkPlugins: [remarkBsParam],
+              remarkPlugins: [remarkBsParam, remarkBsDocsref],
             },
           })
         },
