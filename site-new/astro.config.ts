@@ -10,6 +10,7 @@ export default defineConfig({
   markdown: {
     rehypePlugins: [rehypeBsTable],
     remarkPlugins: [remarkBsParam],
+    smartypants: false,
     syntaxHighlight: 'prism',
   },
   site: 'https://getbootstrap.com/',
