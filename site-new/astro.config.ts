@@ -1,15 +1,12 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
 
-import { rehypeBsTable } from './src/libs/rehype'
-import { remarkBsParam } from './src/libs/remark'
+import { bootstrap } from './src/libs/astro'
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx()],
+  integrations: [bootstrap(), mdx()],
   markdown: {
-    rehypePlugins: [rehypeBsTable],
-    remarkPlugins: [remarkBsParam],
     smartypants: false,
     syntaxHighlight: 'prism',
   },
