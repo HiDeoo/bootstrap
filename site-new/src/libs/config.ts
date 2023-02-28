@@ -92,4 +92,16 @@ export function getVersionedBsCssPath(direction: 'rtl' | undefined): string {
   return getVersionedDocsPath(bsCssLinkHref)
 }
 
+export function getVersionedBsJsPath(): string {
+  let bsJsScriptSrc = '/dist/js/bootstrap.bundle'
+
+  if (import.meta.env.PROD) {
+    bsJsScriptSrc = `${bsJsScriptSrc}.min`
+  }
+
+  bsJsScriptSrc = `${bsJsScriptSrc}.js`
+
+  return getVersionedDocsPath(bsJsScriptSrc)
+}
+
 type Config = z.infer<typeof configSchema>
