@@ -34,6 +34,7 @@ type Props = {
 type MarkdownProps = Partial<
   MarkdownLayoutProps<{
     description?: string
+    direction?: 'rtl'
     thumbnail?: string
     title?: string
   }>
@@ -54,7 +55,14 @@ const mainProps = overrides?.main ?? {}
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
   <head>
-    <Head description={description} layout={layout} robots={robots} thumbnail={thumbnail} title={title} />
+    <Head
+      description={description}
+      direction={frontmatter?.direction}
+      layout={layout}
+      robots={robots}
+      thumbnail={thumbnail}
+      title={title}
+    />
   </head>
   <body {...bodyProps}>
     <Header layout={layout} title={title} />

@@ -28,7 +28,7 @@ const configSchema = z.object({
     download: z.object({
       dist: z.string().url(),
       dist_examples: z.string().url(),
-      source: z.string().url()
+      source: z.string().url(),
     }),
     github_org: z.string().url(),
     icons: z.string().url(),
@@ -74,6 +74,22 @@ export function getVersionedDocsPath(path: string): string {
   const { docs_version } = getConfig().params
 
   return `/docs/${docs_version}/${path.replace(/^\//, '')}`
+}
+
+export function getVersionedBsCssPath(direction: 'rtl' | undefined): string {
+  let bsCssLinkHref = '/dist/css/bootstrap'
+
+  if (direction === 'rtl') {
+    bsCssLinkHref = `${bsCssLinkHref}.rtl`
+  }
+
+  if (import.meta.env.PROD) {
+    bsCssLinkHref = `${bsCssLinkHref}.min`
+  }
+
+  bsCssLinkHref = `${bsCssLinkHref}.css`
+
+  return getVersionedDocsPath(bsCssLinkHref)
 }
 
 type Config = z.infer<typeof configSchema>
