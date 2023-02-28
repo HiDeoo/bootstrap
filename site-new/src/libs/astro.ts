@@ -3,6 +3,7 @@ import path from 'node:path'
 import mdx from '@astrojs/mdx'
 import type { AstroIntegration } from 'astro'
 import autoImport from 'astro-auto-import'
+import { getConfig } from './config'
 import { rehypeBsTable } from './rehype'
 import { remarkBsParam, remarkBsDocsref } from './remark'
 
@@ -22,14 +23,32 @@ export function bootstrap(): AstroIntegration[] {
       name: 'bootstrap-integration',
       hooks: {
         'astro:config:setup': ({ addWatchFile, updateConfig }) => {
+          // Reload the config when the integration is modified.
           addWatchFile(path.join(process.cwd(), 'site-new/src/libs/astro.ts'))
 
+          // Add the remark and rehype plugins.
           updateConfig({
             markdown: {
               rehypePlugins: [rehypeBsTable],
               remarkPlugins: [remarkBsParam, remarkBsDocsref],
             },
           })
+        },
+        'astro:config:done': ({}) => {
+          // Copy the `dist` folder from the root of the repo containing the latest version of Bootstrap's assets to the
+          // `public/docs/${docs_version}/dist` folder.
+          const distDirectory = path.join(process.cwd(), 'dist')
+          const docsDistDirectory = path.join(
+            process.cwd(),
+            docsDirectory,
+            'public/docs',
+            getConfig().params.docs_version,
+            'dist'
+          )
+
+          fs.rmSync(docsDistDirectory, { force: true, recursive: true })
+          fs.mkdirSync(docsDistDirectory, { recursive: true })
+          fs.cpSync(distDirectory, docsDistDirectory, { recursive: true })
         },
       },
     },
