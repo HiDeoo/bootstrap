@@ -22,7 +22,7 @@ export function bootstrap(): AstroIntegration[] {
       name: 'bootstrap-integration',
       hooks: {
         'astro:config:setup': ({ addWatchFile, updateConfig }) => {
-          addWatchFile(path.posix.join(process.cwd(), 'site-new/src/libs/astro.ts'))
+          addWatchFile(path.join(process.cwd(), 'site-new/src/libs/astro.ts'))
 
           updateConfig({
             markdown: {
@@ -42,7 +42,7 @@ function bootstrap_auto_import() {
 
   for (const autoImportedComponentDirectory of autoImportedComponentDirectories) {
     const components = fs.readdirSync(
-      path.posix.join(process.cwd(), docsDirectory, 'src/components', autoImportedComponentDirectory),
+      path.join(process.cwd(), docsDirectory, 'src/components', autoImportedComponentDirectory),
       {
         withFileTypes: true,
       }
