@@ -47,3 +47,5 @@ Thumbs.db
 /site-new/node_modules
 # TODO(HiDeoo) Rename later
 /site-new/public/docs/*/dist
+# TODO(HiDeoo) Rename later
+/site-new/.astro
