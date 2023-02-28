@@ -12,8 +12,7 @@ const docsDirectory = './site-new'
 
 // A list of directories in `src/components` that contains components that will be auto imported in all pages for
 // convenience.
-// Note: add a new directory to this list or a new component to one of the existing directories requires a restart of
-// the dev server.
+// Note: adding a new component to one of the existing directories requires a restart of the dev server.
 const autoImportedComponentDirectories = ['callouts', 'shortcodes']
 
 export function bootstrap(): AstroIntegration[] {
@@ -22,7 +21,9 @@ export function bootstrap(): AstroIntegration[] {
     {
       name: 'bootstrap-integration',
       hooks: {
-        'astro:config:setup': ({ updateConfig }) => {
+        'astro:config:setup': ({ addWatchFile, updateConfig }) => {
+          addWatchFile(path.posix.join(process.cwd(), 'site-new/src/libs/astro.ts'))
+
           updateConfig({
             markdown: {
               rehypePlugins: [rehypeBsTable],
