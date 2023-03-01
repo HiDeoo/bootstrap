@@ -47,9 +47,9 @@ interface Props {
 
 // TODO(HiDeoo) After migrating the docs, make sure this is never called with the "false" string.
 const {
-  background = getData('grays')['600'],
+  background = getData('grays')[5].hex,
   class: className,
-  color = getData('grays')['300'],
+  color = getData('grays')[2].hex,
   height = '180',
   markup = 'svg',
   text,

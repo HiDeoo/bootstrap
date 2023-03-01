@@ -10,9 +10,12 @@ export const zVersionSemver = z.string().regex(semverRegex)
 
 export const zHexColor = z.string().regex(/^#(?:[0-9a-fA-F]{3}){1,2}$/)
 
-export function zNamedHexColor<TName>(name: z.ZodLiteral<TName>) {
-  return z.object({
-    name,
-    hex: zHexColor,
-  })
+export const zNamedHexColors = (count: number) => {
+  return z
+    .object({
+      name: z.union([z.string(), z.number()]),
+      hex: zHexColor,
+    })
+    .array()
+    .length(count)
 }
