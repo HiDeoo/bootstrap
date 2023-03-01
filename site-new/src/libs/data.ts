@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import yaml from 'js-yaml'
 import { z } from 'zod'
 import { zHexColor, zNamedHexColor } from './validation'
-import { capitalizeFirstLetter } from './string'
+import { capitalizeFirstLetter } from './utils'
 
 // An object containing all the data types and their associated schema. The key should match the name of the data file
 // in the `./site/data/` directory.
