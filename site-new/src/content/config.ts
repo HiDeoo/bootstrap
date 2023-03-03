@@ -6,6 +6,13 @@ export const docsSchema = z.object({
   description: z.string(),
   direction: z.literal('rtl').optional(),
   // TODO(HiDeoo) group
+  extra_js: z
+    .object({
+      async: z.boolean().optional(),
+      src: z.string(),
+    })
+    .array()
+    .optional(),
   sections: z
     .object({
       description: z.string(),
