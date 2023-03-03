@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import yaml from 'js-yaml'
 import { z } from 'zod'
-import { zHexColor, zNamedHexColors } from './validation'
+import { zHexColor, zLanguageCode, zNamedHexColors, zPxSizeOrEmpty } from './validation'
 import { capitalizeFirstLetter } from './utils'
 
 // An object containing all the data types and their associated schema. The key should match the name of the data file
@@ -9,11 +9,11 @@ import { capitalizeFirstLetter } from './utils'
 const dataDefinitions = {
   breakpoints: z
     .object({
-      breakpoint: z.string(), // TODO: type?
-      abbr: z.string(), // TODO: type?
-      name: z.string(), // TODO: type?
-      'min-width': z.string(), // TODO: type?
-      container: z.string(), // TODO: type?
+      breakpoint: z.string(),
+      abbr: z.string(),
+      name: z.string(),
+      'min-width': zPxSizeOrEmpty,
+      container: zPxSizeOrEmpty,
     })
     .array(),
   colors: zNamedHexColors(13),
@@ -26,7 +26,7 @@ const dataDefinitions = {
   translations: z
     .object({
       name: z.string(),
-      code: z.string(), // TODO: could maybe be a type
+      code: zLanguageCode,
       description: z.string(),
       url: z.string().url(),
     })

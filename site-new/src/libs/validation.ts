@@ -19,3 +19,7 @@ export const zNamedHexColors = (count: number) => {
     .array()
     .length(count)
 }
+
+export const zPxSizeOrEmpty = z.string().regex(/^(?:\d+px)?$/)
+
+export const zLanguageCode = z.string().regex(/^[a-z]{2}(?:-[a-zA-Z]{2})?$/)
