@@ -56,7 +56,7 @@ export const remarkBsParam: Plugin<[], Root> = function () {
 // Note: this plugin is meant to facilitate the migration from Hugo to Astro while keeping the differences to a minimum.
 // At some point, this plugin should maybe be removed and embrace a more MDX-friendly syntax.
 export const remarkBsDocsref: Plugin<[], Root> = function () {
-  return function remarkBsParamPlugin(ast) {
+  return function remarkBsDocsrefPlugin(ast) {
     // https://github.com/syntax-tree/mdast#nodes
     // https://github.com/syntax-tree/mdast-util-mdx-jsx#nodes
     visit(ast, ['definition', 'link', 'mdxJsxTextElement'], (node) => {
