@@ -14,7 +14,7 @@ const docsDirectory = './site-new'
 // A list of directories in `src/components` that contains components that will be auto imported in all pages for
 // convenience.
 // Note: adding a new component to one of the existing directories requires a restart of the dev server.
-const autoImportedComponentDirectories = ['callouts', 'shortcodes']
+const autoImportedComponentDirectories = ['shortcodes']
 
 export function bootstrap(): AstroIntegration[] {
   return [

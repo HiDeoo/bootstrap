@@ -21,13 +21,9 @@ Things to know when using the popover plugin:
 - Popovers must be hidden before their corresponding elements have been removed from the DOM.
 - Popovers can be triggered thanks to an element inside a shadow DOM.
 
-<Callout>
-<InfoSanitizer />
-</Callout>
+<Callout name="info-sanitizer" />
 
-<Callout>
-<InfoPrefersReducedMotion />
-</Callout>
+<Callout name="info-prefersreducedmotion" />
 
 Keep reading to see how popovers work with some examples.
 
@@ -46,9 +42,7 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 
 We use JavaScript similar to the snippet above to render the following live popover. Titles are set via `data-bs-title` and body content is set via `data-bs-content`.
 
-<Callout type="warning">
-<WarningDataBsTitleVsTitle />
-</Callout>
+<Callout name="warning-data-bs-title-vs-title" type="warning" />
 
 <Example addStackblitzJs code={`<button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>`} />
 
@@ -211,9 +205,7 @@ const popover = new bootstrap.Popover(element, {
 
 ### Methods
 
-<Callout type="danger">
-<DangerAsyncMethods />
-</Callout>
+<Callout name="danger-async-methods" type="danger" />
 
 <BsTable>
 | Method | Description |
