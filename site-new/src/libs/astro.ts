@@ -9,12 +9,18 @@ import { remarkBsParam, remarkBsDocsref } from './remark'
 
 // TODO(HiDeoo) Fix path when moving to `site`
 // The docs directory path relative to the root of the project.
-const docsDirectory = './site-new'
+const docsDirectory = 'site-new'
 
 // A list of directories in `src/components` that contains components that will be auto imported in all pages for
 // convenience.
 // Note: adding a new component to one of the existing directories requires a restart of the dev server.
 const autoImportedComponentDirectories = ['shortcodes']
+
+// A list of static file paths that will be aliased to a different path.
+const staticFileAliases = {
+  '/docs/[version]/assets/img/favicons/apple-touch-icon.png': '/apple-touch-icon.png',
+  '/docs/[version]/assets/img/favicons/favicon.ico': '/favicon.ico',
+}
 
 export function bootstrap(): AstroIntegration[] {
   return [
@@ -24,7 +30,7 @@ export function bootstrap(): AstroIntegration[] {
       hooks: {
         'astro:config:setup': ({ addWatchFile, updateConfig }) => {
           // Reload the config when the integration is modified.
-          addWatchFile(path.join(process.cwd(), 'site-new/src/libs/astro.ts'))
+          addWatchFile(path.join(getDocsPath(), 'src/libs/astro.ts'))
 
           // Add the remark and rehype plugins.
           updateConfig({
@@ -35,20 +41,10 @@ export function bootstrap(): AstroIntegration[] {
           })
         },
         'astro:config:done': ({}) => {
-          // Copy the `dist` folder from the root of the repo containing the latest version of Bootstrap's assets to the
-          // `public/docs/${docs_version}/dist` folder.
-          const distDirectory = path.join(process.cwd(), 'dist')
-          const docsDistDirectory = path.join(
-            process.cwd(),
-            docsDirectory,
-            'public/docs',
-            getConfig().params.docs_version,
-            'dist'
-          )
-
-          fs.rmSync(docsDistDirectory, { force: true, recursive: true })
-          fs.mkdirSync(docsDistDirectory, { recursive: true })
-          fs.cpSync(distDirectory, docsDistDirectory, { recursive: true })
+          cleanPublicDirectory()
+          copyBootstrap()
+          copyStatic()
+          aliasStatic()
         },
       },
     },
@@ -60,12 +56,9 @@ function bootstrap_auto_import() {
   const autoImportedComponents: string[] = []
 
   for (const autoImportedComponentDirectory of autoImportedComponentDirectories) {
-    const components = fs.readdirSync(
-      path.join(process.cwd(), docsDirectory, 'src/components', autoImportedComponentDirectory),
-      {
-        withFileTypes: true,
-      }
-    )
+    const components = fs.readdirSync(path.join(getDocsPath(), 'src/components', autoImportedComponentDirectory), {
+      withFileTypes: true,
+    })
 
     for (const component of components) {
       if (component.isFile()) {
@@ -79,4 +72,69 @@ function bootstrap_auto_import() {
   return autoImport({
     imports: autoImportedComponents,
   })
+}
+
+function cleanPublicDirectory() {
+  fs.rmSync(getDocsPublicPath(), { force: true, recursive: true })
+}
+
+// Copy the `dist` folder from the root of the repo containing the latest version of Bootstrap to make it available from
+// the `/docs/${docs_version}/dist` URL.
+function copyBootstrap() {
+  const source = path.join(process.cwd(), 'dist')
+  const destination = path.join(getDocsPublicPath(), 'docs', getConfig().params.docs_version, 'dist')
+
+  fs.mkdirSync(destination, { recursive: true })
+  fs.cpSync(source, destination, { recursive: true })
+}
+
+// Copy the content as-is of the `static` folder to make it available from the `/` URL.
+// A folder named `[version]` will automatically be renamed to the current version of the docs extracted from the
+// `config.yml` file.
+function copyStatic() {
+  const source = getDocsStaticPath()
+  const destination = path.join(getDocsPublicPath())
+
+  copyStaticRecursively(source, destination)
+}
+
+// Alias (copy) some static files to different paths.
+function aliasStatic() {
+  const source = getDocsStaticPath()
+  const destination = path.join(getDocsPublicPath())
+
+  for (const [aliasSource, aliasDestination] of Object.entries(staticFileAliases)) {
+    fs.cpSync(path.join(source, aliasSource), path.join(destination, aliasDestination))
+  }
+}
+
+// See `copyStatic()` for more details.
+function copyStaticRecursively(source: string, destination: string) {
+  const entries = fs.readdirSync(source, { withFileTypes: true })
+
+  for (const entry of entries) {
+    if (entry.isFile()) {
+      fs.cpSync(path.join(source, entry.name), replacePathVersionPlaceholder(path.join(destination, entry.name)))
+    } else if (entry.isDirectory()) {
+      fs.mkdirSync(replacePathVersionPlaceholder(path.join(destination, entry.name)), { recursive: true })
+
+      copyStaticRecursively(path.join(source, entry.name), path.join(destination, entry.name))
+    }
+  }
+}
+
+function replacePathVersionPlaceholder(name: string) {
+  return name.replace('[version]', getConfig().params.docs_version)
+}
+
+function getDocsStaticPath() {
+  return path.join(getDocsPath(), 'static')
+}
+
+function getDocsPublicPath() {
+  return path.join(getDocsPath(), 'public')
+}
+
+function getDocsPath() {
+  return path.join(process.cwd(), docsDirectory)
 }

@@ -31,19 +31,7 @@ if (import.meta.env.PROD) {
   )
 }
 
-<!--
-{{- $js := resources.Match "js/*.js" -}}
-TODO(HiDeoo) This should prolly use getVersionedDocsPath()
-{{- $targetDocsJSPath := path.Join "/docs" .Site.Params.docs_version "assets/js/docs.js" -}}
-// TODO(HiDeoo) $vendor is no longer relevant as the only JS vendor was clipboard.js and is now bundled by Astro
-{{- $docsJs := append $js $vendor | resources.Concat $targetDocsJSPath -}}
-
-{{- if eq hugo.Environment "production" -}}
-  {{- $docsJs = $docsJs | resources.Minify -}}
-{{- end }}
-
-<script src="{{ $docsJs.Permalink | relURL }}"></script>
--->
-
-<!-- TODO(HiDeoo) Handle this with todo above, this is a temporary workaround to get some example requiring some JS to work -->
-<script is:inline src="/js/snippets.js"></script>
+<!-- TODO(HiDeoo) Uncomment when the sidebar active items are handled as this script crash without it ^^ -->
+<!-- <script src="../assets/application.js"></script> -->
+<script src="../assets/search.js"></script>
+<script src="../assets/snippets.js"></script>

@@ -9,7 +9,6 @@ interface Props {
 
 const { description, thumbnail, title } = Astro.props
 
-// TODO(HiDeoo) Test when assets are figured out
 const socialImageUrl = new URL(getVersionedDocsPath(`assets/${thumbnail}`), Astro.site)
 ---
 

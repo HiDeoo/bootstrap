@@ -29,6 +29,7 @@ disableKinds:           ["404", "taxonomy", "term", "RSS"]
 
 publishDir:             "_site"
 
+# TODO(HiDeoo) This should be removed as only used by Hugo and no longer necessary.
 module:
   mounts:
     - source:           dist

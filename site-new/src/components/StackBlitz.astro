@@ -1,13 +1,10 @@
 ---
-import fs from 'node:fs'
-import path from 'node:path'
 import { getConfig } from '../libs/config'
+import jsSnippetContent from '../assets/snippets.js?raw'
 
 const cdnCss = getConfig().params.cdn.css
 const cdnJs = getConfig().params.cdn.js_bundle
 const docsVersion = getConfig().params.docs_version
-// TODO(HiDeoo) Fix path and should also be versionned
-const jsSnippetContent = fs.readFileSync(path.join(process.cwd(), 'site-new/public/js/snippets.js'), 'utf8')
 ---
 
 <script is:inline src="https://cdn.jsdelivr.net/npm/@stackblitz/sdk@1/bundles/sdk.umd.js"></script>

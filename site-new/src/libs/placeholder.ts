@@ -6,7 +6,7 @@ const placeholderRegex = /<Placeholder\s+([^>]+)\/>/g
 
 /**
  * Generates all the placeholder attributes and options required to render a placeholder.
- * @see site-new/src/components/shortcodes/Placeholder.astro
+ * @see src/components/shortcodes/Placeholder.astro
  */
 export function getPlaceholder(userOptions: Partial<PlaceholderOptions>): Placeholder {
   const options = getOptionsWithDefaults(userOptions)

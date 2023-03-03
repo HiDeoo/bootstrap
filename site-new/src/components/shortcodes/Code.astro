@@ -23,7 +23,7 @@ interface Props {
    */
   lang?: string
   /**
-   * A path to the file containing the code to highlight.
+   * A path to the file containing the code to highlight relative to the root of the repository.
    * This takes precedence over the `code` prop.
    */
   filePath?: string
@@ -31,9 +31,7 @@ interface Props {
 
 const { class: className, code, containerClass, filePath, lang } = Astro.props
 
-// TODO(HiDeoo) Fix path and should also be versionned and documented
-// TODO(HiDeoo) When done, maybe rename the `filePath` prop to something more explicit like versionedFilePath or something
-const codeToDisplay = filePath ? fs.readFileSync(path.join(process.cwd(), 'site-new/public', filePath), 'utf8') : code
+const codeToDisplay = filePath ? fs.readFileSync(path.join(process.cwd(), filePath), 'utf8') : code
 
 // TODO(HiDeoo) Style (We use Chroma style overriden in _syntax.scss)
 // TODO(HiDeoo) sh $ prefix
