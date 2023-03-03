@@ -7,3 +7,4 @@ site-new/public
 site-new/src/scss
 site-new/src/pages/**/*.mdx
 site-new/src/content/**/*.mdx
+site-new/src/layouts/RedirectLayout.astro

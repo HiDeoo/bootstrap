@@ -16,7 +16,7 @@ const sidebar = getData('sidebar')
         // TODO: Handle $link_slug
         // TODO: Handle "if $group-pages" + $link/$link_slug
         // TODO: Handle $group_slug + find a way to use urlize instead of split/join/toLowerCase
-        const groupSlug = sidebarElement.title.split(' ').join('-').toLowerCase();
+        const groupSlug = sidebarElement.title.split(' ').join('-').toLowerCase()
         // TODO: Handle $is_active_group
 
         if (sidebarElement.pages) {
@@ -35,32 +35,37 @@ const sidebar = getData('sidebar')
                 {sidebarElement.title}
               </strong>
               <ul class="list-unstyled fw-normal pb-2 small">
-                {
-                  sidebarElement.pages?.map((sidebarElementPage) => {
-                    // TODO: Handle $doc_slug correctly + find a way to use urlize instead of split/join/toLowerCase
-                    const docSlug = sidebarElementPage.title.split(' ').join('-').toLowerCase();
-                    // TODO: Handle $is_active
-                    // TODO: Handle $href
-                    // TODO: finalize the inclusion of the following <a href="">
-                    const url = "/docs/" + getConfig().params.docs_version + "/" + groupSlug + "/" + docSlug;
-                    return (
-                      <li>
-                        <a href={url} class="bd-links-link d-inline-block rounded">{sidebarElementPage.title}</a>
-                      </li>
-                    )
-                  })
-                }
+                {sidebarElement.pages?.map((sidebarElementPage) => {
+                  // TODO: Handle $doc_slug correctly + find a way to use urlize instead of split/join/toLowerCase
+                  const docSlug = sidebarElementPage.title.split(' ').join('-').toLowerCase()
+                  // TODO: Handle $is_active
+                  // TODO: Handle $href
+                  // TODO: finalize the inclusion of the following <a href="">
+                  const url = '/docs/' + getConfig().params.docs_version + '/' + groupSlug + '/' + docSlug
+                  return (
+                    <li>
+                      <a href={url} class="bd-links-link d-inline-block rounded">
+                        {sidebarElementPage.title}
+                      </a>
+                    </li>
+                  )
+                })}
               </ul>
             </li>
           )
         } else {
           return (
-            <li class="bd-links-span-all mt-1 mb-3 mx-4 border-top"></li>
-            <li class="bd-links-span-all">
-              <a href="/docs/{{ $.Site.Params.docs_version }}/{{ $group_slug }}/" class="bd-links-link d-inline-block rounded small">
-                {sidebarElement.title}
-              </a>
-            </li>
+            <>
+              <li class="bd-links-span-all mt-1 mb-3 mx-4 border-top" />
+              <li class="bd-links-span-all">
+                <a
+                  href="/docs/{{ $.Site.Params.docs_version }}/{{ $group_slug }}/"
+                  class="bd-links-link d-inline-block rounded small"
+                >
+                  {sidebarElement.title}
+                </a>
+              </li>
+            </>
           )
         }
       })
