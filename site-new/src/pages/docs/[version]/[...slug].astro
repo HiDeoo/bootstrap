@@ -18,9 +18,9 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'docs'>
 
 const { data, render } = Astro.props
-const { Content } = await render()
+const { Content, remarkPluginFrontmatter } = await render()
 ---
 
-<DocsLayout frontmatter={data}>
+<DocsLayout frontmatter={remarkPluginFrontmatter as typeof data}>
   <Content components={{ pre: Code }} />
 </DocsLayout>
