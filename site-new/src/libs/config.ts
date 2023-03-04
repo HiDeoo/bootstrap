@@ -6,6 +6,10 @@ import { zVersionMajorMinor, zVersionSemver } from './validation'
 // The config schema used to validate the config file content and ensure all values required by the site are valid.
 const configSchema = z.object({
   params: z.object({
+    anchors: z.object({
+      min: z.number(),
+      max: z.number(),
+    }),
     authors: z.string(),
     blog: z.string().url(),
     cdn: z.object({

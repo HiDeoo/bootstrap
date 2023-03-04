@@ -1,8 +1,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import mdx from '@astrojs/mdx'
 import type { AstroIntegration } from 'astro'
 import autoImport from 'astro-auto-import'
+import type { Element } from 'hast'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { getConfig } from './config'
 import { rehypeBsTable } from './rehype'
 import { remarkBsParam, remarkBsDocsref } from './remark'
@@ -22,6 +25,8 @@ const staticFileAliases = {
   '/docs/[version]/assets/img/favicons/favicon.ico': '/favicon.ico',
 }
 
+const headingsRangeRegex = new RegExp(`^h[${getConfig().params.anchors.min}-${getConfig().params.anchors.max}]$`)
+
 export function bootstrap(): AstroIntegration[] {
   return [
     bootstrap_auto_import(),
@@ -35,7 +40,19 @@ export function bootstrap(): AstroIntegration[] {
           // Add the remark and rehype plugins.
           updateConfig({
             markdown: {
-              rehypePlugins: [rehypeBsTable],
+              rehypePlugins: [
+                rehypeHeadingIds,
+                [
+                  rehypeAutolinkHeadings,
+                  {
+                    behavior: 'append',
+                    content: [{ type: 'text', value: ' ' }],
+                    properties: { class: 'anchor-link' },
+                    test: (element: Element) => element.tagName.match(headingsRangeRegex),
+                  },
+                ],
+                rehypeBsTable,
+              ],
               remarkPlugins: [remarkBsParam, remarkBsDocsref],
             },
           })
