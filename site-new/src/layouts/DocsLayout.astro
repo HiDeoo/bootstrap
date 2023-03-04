@@ -14,8 +14,9 @@ const { frontmatter } = Astro.props
 const bodyProps: LayoutOverridesHTMLAttributes<'body'> = { tabindex: 0 }
 
 if (frontmatter.toc) {
-  bodyProps['data-bs-spy'] = 'scroll'
-  bodyProps['data-bs-target'] = '#TableOfContents'
+  // TODO(HiDeoo) Uncomment when an element with a `TableOfContents` ID is defined in the DOM otherwise this removes sidebar active link highlighting.
+  // bodyProps['data-bs-spy'] = 'scroll'
+  // bodyProps['data-bs-target'] = '#TableOfContents'
 }
 ---
 
