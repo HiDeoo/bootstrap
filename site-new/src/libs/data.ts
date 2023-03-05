@@ -32,6 +32,20 @@ const dataDefinitions = {
     })
     .array(),
   grays: zNamedHexColors(9),
+  icons: z.object({
+    preferred: z
+      .object({
+        name: z.string(),
+        website: z.string().url(),
+      })
+      .array(),
+    more: z
+      .object({
+        name: z.string(),
+        website: z.string().url(),
+      })
+      .array(),
+  }),
   plugins: z
     .object({
       description: z.string(),
