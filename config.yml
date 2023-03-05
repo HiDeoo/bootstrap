@@ -16,6 +16,7 @@ markup:
   # TODO(HiDeoo) This should be removed as only used by Hugo and no longer necessary.
   highlight:
     noClasses:          false
+  # TODO(HiDeoo) This should be removed as moved to the `params` section for consistency.
   tableOfContents:
     startLevel:         2
     endLevel:           6
@@ -89,3 +90,7 @@ params:
   anchors:
     min: 2
     max: 5
+
+  toc:
+    min: 2
+    max: 6

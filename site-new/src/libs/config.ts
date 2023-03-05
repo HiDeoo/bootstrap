@@ -42,6 +42,10 @@ const configSchema = z.object({
     subtitle: z.string(),
     swag: z.string().url(),
     themes: z.string().url(),
+    toc: z.object({
+      min: z.number(),
+      max: z.number(),
+    }),
     twitter: z.string(),
   }),
   title: z.string(),
