@@ -9,6 +9,7 @@ toc: true
 ---
 
 import { getData } from '../../../libs/data'
+import { getSequence } from '../../../libs/utils'
 
 ## Enable flex behaviors
 
@@ -20,12 +21,16 @@ Apply `display` utilities to create a flexbox container and transform **direct c
 
 Responsive variations also exist for `.d-flex` and `.d-inline-flex`.
 
-{/* {getData('breakpoints').map((breakpoint) => {
+<ul>
+{getData('breakpoints').map((breakpoint) => {
   return (
-  - `.d${breakpoint.abbr}-flex`
-  - `.d${breakpoint.abbr}-inline-flex`
+    <Fragment>
+      <li><code>.d{breakpoint.abbr}-flex</code></li>
+      <li><code>.d{breakpoint.abbr}-inline-flex</code></li>
+    </Fragment>
   )
-})} */}
+})}
+</ul>
 
 ## Direction
 
@@ -59,14 +64,17 @@ Use `.flex-column` to set a vertical direction, or `.flex-column-reverse`  to st
 
 Responsive variations also exist for `flex-direction`.
 
-{/* {getData('breakpoints').map((breakpoint) => {
+<ul>
+{getData('breakpoints').map((breakpoint) => {
   return (
-    - `.flex${breakpoint.abbr}-row`
-    - `.flex${breakpoint.abbr}-row-reverse`
-    - `.flex${breakpoint.abbr}-column`
-    - `.flex${breakpoint.abbr}-column-reverse`
+    <Fragment>
+      <li><code>.flex{breakpoint.abbr}-row</code></li>
+      <li><code>.flex{breakpoint.abbr}-row-reverse</code></li>
+      <li><code>.flex{breakpoint.abbr}-column-reverse</code></li>
+    </Fragment>
   )
-})} */}
+})}
+</ul>
 
 ## Justify content
 
@@ -116,16 +124,20 @@ Use `justify-content` utilities on flexbox containers to change the alignment of
 
 Responsive variations also exist for `justify-content`.
 
-{/* {getData('breakpoints').map((breakpoint) => {
+<ul>
+{getData('breakpoints').map((breakpoint) => {
   return (
-    - `.justify-content${breakpoint.abbr}-start`
-    - `.justify-content${breakpoint.abbr}-end`
-    - `.justify-content${breakpoint.abbr}-center`
-    - `.justify-content${breakpoint.abbr}-between`
-    - `.justify-content${breakpoint.abbr}-around`
-    - `.justify-content${breakpoint.abbr}-evenly`
+    <Fragment>
+      <li><code>.justify-content{breakpoint.abbr}-start</code></li>
+      <li><code>.justify-content{breakpoint.abbr}-end</code></li>
+      <li><code>.justify-content{breakpoint.abbr}-center</code></li>
+      <li><code>.justify-content{breakpoint.abbr}-between</code></li>
+      <li><code>.justify-content{breakpoint.abbr}-around</code></li>
+      <li><code>.justify-content{breakpoint.abbr}-evenly</code></li>
+    </Fragment>
   )
-})} */}
+})}
+</ul>
 
 ## Align items
 
@@ -169,14 +181,19 @@ Use `align-items` utilities on flexbox containers to change the alignment of fle
 
 Responsive variations also exist for `align-items`.
 
-{/* {getData('breakpoints').map((breakpoint) => {
+<ul>
+{getData('breakpoints').map((breakpoint) => {
   return (
-    - `.align-items${breakpoint.abbr}-start`
-    - `.align-items${breakpoint.abbr}-end`
-    - `.align-items${breakpoint.abbr}-center`
-    - `.align-items${breakpoint.abbr}-baseline`
-    - `.align-items${breakpoint.abbr}-stretch`
-)})
+    <Fragment>
+      <li><code>.align-items{breakpoint.abbr}-start</code></li>
+      <li><code>.align-items{breakpoint.abbr}-end</code></li>
+      <li><code>.align-items{breakpoint.abbr}-center</code></li>
+      <li><code>.align-items{breakpoint.abbr}-baseline</code></li>
+      <li><code>.align-items{breakpoint.abbr}-stretch</code></li>
+    </Fragment>
+  )
+})}
+</ul>
 
 ## Align self
 
@@ -220,15 +237,19 @@ Use `align-self` utilities on flexbox items to individually change their alignme
 
 Responsive variations also exist for `align-self`.
 
-{/* {getData('breakpoints').map((breakpoint) => {
+<ul>
+{getData('breakpoints').map((breakpoint) => {
   return (
-    - `.align-self${breakpoint.abbr}-start`
-    - `.align-self${breakpoint.abbr}-end`
-    - `.align-self${breakpoint.abbr}-center`
-    - `.align-self${breakpoint.abbr}-baseline`
-    - `.align-self${breakpoint.abbr}-stretch`
+    <Fragment>
+      <li><code>.align-self{breakpoint.abbr}-start</code></li>
+      <li><code>.align-self{breakpoint.abbr}-end</code></li>
+      <li><code>.align-self{breakpoint.abbr}-center</code></li>
+      <li><code>.align-self{breakpoint.abbr}-baseline</code></li>
+      <li><code>.align-self{breakpoint.abbr}-stretch</code></li>
+    </Fragment>
   )
-})} */}
+})}
+</ul>
 
 ## Fill
 
@@ -242,11 +263,13 @@ Use the `.flex-fill` class on a series of sibling elements to force them into wi
 
 Responsive variations also exist for `flex-fill`.
 
-{/* {getData('breakpoints').map((breakpoint) => {
+<ul>
+{getData('breakpoints').map((breakpoint) => {
   return (
-    - `.flex${breakpoint.abbr}-fill`
+    <li><code>.flex{breakpoint.abbr}-fill</code></li>
   )
-})} */}
+})}
+</ul>
 
 ## Grow and shrink
 
@@ -267,12 +290,16 @@ Use `.flex-shrink-*` utilities to toggle a flex item's ability to shrink if nece
 
 Responsive variations also exist for `flex-grow` and `flex-shrink`.
 
-{/* {getData('breakpoints').map((breakpoint) => {
+<ul>
+{getData('breakpoints').map((breakpoint) => {
   return (
-    - `.flex${breakpoint.abbr}-{grow|shrink}-0`
-    - `.flex${breakpoint.abbr}-{grow|shrink}-1`
+    <Fragment>
+      <li><code>.flex{breakpoint.abbr}-{'{'}grow|shrink{'}'}-0</code></li>
+      <li><code>.flex{breakpoint.abbr}-{'{'}grow|shrink{'}'}-1</code></li>
+    </Fragment>
   )
-})} */}
+})}
+</ul>
 
 ## Auto margins
 
@@ -385,13 +412,17 @@ Change how flex items wrap in a flex container. Choose from no wrapping at all (
 
 Responsive variations also exist for `flex-wrap`.
 
-{/* {getData('breakpoints').map((breakpoint) => {
+<ul>
+{getData('breakpoints').map((breakpoint) => {
   return (
-    - `.flex${breakpoint.abbr}-nowrap`
-    - `.flex${breakpoint.abbr}-wrap`
-    - `.flex${breakpoint.abbr}-wrap-reverse`
+    <Fragment>
+      <li><code>.flex{breakpoint.abbr}-nowrap</code></li>
+      <li><code>.flex{breakpoint.abbr}-wrap</code></li>
+      <li><code>.flex{breakpoint.abbr}-wrap-reverse</code></li>
+    </Fragment>
   )
-})} */}
+})}
+</ul>
 
 ## Order
 
@@ -405,27 +436,23 @@ Change the _visual_ order of specific flex items with a handful of `order` utili
 
 Responsive variations also exist for `order`.
 
-{/* {{< markdown >}}
-{{< flex.inline >}}
-{{- range $bp := $.Site.Data.breakpoints -}}
-{{- range (seq 0 5) }}
-- `.order{{ $bp.abbr }}-{{ . }}`
-{{- end -}}
-{{- end -}}
-{{< /flex.inline >}}
-{{< /markdown >}} */}
+<ul>
+{getData('breakpoints').map((breakpoint) => getSequence(0, 5).map((value) => {
+  return (
+    <li><code>.order{breakpoint.abbr}-{value}</code></li>
+  )
+}))}
+</ul>
 
 Additionally there are also responsive `.order-first` and `.order-last` classes that change the `order` of an element by applying `order: -1` and `order: 6`, respectively.
 
-{/* {{< markdown >}}
-{{< flex.inline >}}
-{{- range $bp := $.Site.Data.breakpoints -}}
-{{- range (slice "first" "last") }}
-- `.order{{ $bp.abbr }}-{{ . }}`
-{{- end -}}
-{{- end -}}
-{{< /flex.inline >}}
-{{< /markdown >}} */}
+<ul>
+{getData('breakpoints').map((breakpoint) => ['first', 'last'].map((value) => {
+  return (
+    <li><code>.order{breakpoint.abbr}-{value}</code></li>
+  )
+}))}
+</ul>
 
 ## Align content
 
@@ -581,16 +608,20 @@ Use `align-content` utilities on flexbox containers to align flex items _togethe
 
 Responsive variations also exist for `align-content`.
 
-{/* {getData('breakpoints').map((breakpoint) => {
+<ul>
+{getData('breakpoints').map((breakpoint) => {
   return (
-    - `.align-content${breakpoint.abbr}-start`
-    - `.align-content${breakpoint.abbr}-end`
-    - `.align-content${breakpoint.abbr}-center`
-    - `.align-content${breakpoint.abbr}-between`
-    - `.align-content${breakpoint.abbr}-around`
-    - `.align-content${breakpoint.abbr}-stretch`
+    <Fragment>
+      <li><code>.align-content{breakpoint.abbr}-start</code></li>
+      <li><code>.align-content{breakpoint.abbr}-end</code></li>
+      <li><code>.align-content{breakpoint.abbr}-center</code></li>
+      <li><code>.align-content{breakpoint.abbr}-between</code></li>
+      <li><code>.align-content{breakpoint.abbr}-around</code></li>
+      <li><code>.align-content{breakpoint.abbr}-stretch</code></li>
+    </Fragment>
   )
-})} */}
+})}
+</ul>
 
 ## Media object
 
