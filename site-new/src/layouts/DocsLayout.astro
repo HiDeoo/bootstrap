@@ -1,6 +1,7 @@
 ---
 import type { MarkdownHeading } from 'astro'
 import type { CollectionEntry } from 'astro:content'
+import { getConfig } from '../libs/config'
 import type { LayoutOverridesHTMLAttributes } from '../libs/layout'
 import Ads from '../components/Ads.astro'
 import BaseLayout from './BaseLayout.astro'
@@ -10,9 +11,10 @@ import TableOfContents from '../components/TableOfContents.astro'
 interface Props {
   frontmatter: CollectionEntry<'docs'>['data']
   headings?: MarkdownHeading[]
+  id: CollectionEntry<'docs'>['id']
 }
 
-const { frontmatter, headings } = Astro.props
+const { frontmatter, headings, id } = Astro.props
 
 const bodyProps: LayoutOverridesHTMLAttributes<'body'> = { tabindex: 0 }
 
@@ -53,10 +55,9 @@ if (frontmatter.toc) {
                 </small>
               )
             }
-            <!-- {{ .Site.Params.repo }}/blob/v{{ .Site.Params.current_version }}/site/content/{{ .Page.File.Path | replaceRE `\\` "/" }}" -->
             <a
               class="btn btn-sm btn-bd-light rounded-2"
-              href="// TODO(HiDeoo) Figure out this link when we have proper routing and we know for sure where files will be located."
+              href={`${getConfig().params.repo}/blob/v${getConfig().params.current_version}/site/src/content/${id}`}
               title="View and edit this file on GitHub"
               target="_blank"
               rel="noopener"
