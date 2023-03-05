@@ -11,8 +11,9 @@ interface Props {
   class?: string
   /**
    * The code to highlight.
+   * If an array is passed, elements will be joined with a new line.
    */
-  code?: string
+  code?: string | string[]
   /**
    * The CSS class(es) to be added to the `div` wrapper HTML element.
    */
@@ -36,7 +37,11 @@ interface Props {
 
 const { class: className, code, containerClass, fileMatch, filePath, lang } = Astro.props
 
-let codeToDisplay = filePath ? fs.readFileSync(path.join(process.cwd(), filePath), 'utf8') : code
+let codeToDisplay = filePath
+  ? fs.readFileSync(path.join(process.cwd(), filePath), 'utf8')
+  : Array.isArray(code)
+  ? code.join('\n')
+  : code
 
 if (filePath && fileMatch && codeToDisplay) {
   const match = codeToDisplay.match(new RegExp(fileMatch))
