@@ -44,17 +44,6 @@ Do you need a gradient in your custom CSS? Just add `background-image: var(--bs-
 })}
 <div class="p-3 mb-2 bg-black bg-gradient text-white">.bg-black.bg-gradient</div>
 
-{/*
-{{< markdown >}}
-{{< colors.inline >}}
-{{- range (index $.Site.Data "theme-colors") }}
-<div class="p-3 mb-2 bg-{{ .name }} bg-gradient{{ with .contrast_color }} text-{{ . }}{{ else }} text-white{{ end }}">.bg-{{ .name }}.bg-gradient</div>
-{{- end -}}
-{{< /colors.inline >}}
-<div class="p-3 mb-2 bg-black bg-gradient text-white">.bg-black.bg-gradient</div>
-{{< /markdown >}}
-*/}
-
 ## Opacity
 
 <AddedIn version="5.1.0" />
