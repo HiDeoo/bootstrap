@@ -23,19 +23,30 @@ interface Props {
    */
   lang?: string
   /**
+   * If the `filePath` prop is defined, this prop can be used to specify a regex containing a match group to extract
+   * only a part of the file.
+   */
+  fileMatch?: string
+  /**
    * A path to the file containing the code to highlight relative to the root of the repository.
    * This takes precedence over the `code` prop.
    */
   filePath?: string
 }
 
-const { class: className, code, containerClass, filePath, lang } = Astro.props
+const { class: className, code, containerClass, fileMatch, filePath, lang } = Astro.props
 
-const codeToDisplay = filePath ? fs.readFileSync(path.join(process.cwd(), filePath), 'utf8') : code
+let codeToDisplay = filePath ? fs.readFileSync(path.join(process.cwd(), filePath), 'utf8') : code
 
-// TODO(HiDeoo) Style (We use Chroma style overriden in _syntax.scss)
-// TODO(HiDeoo) sh $ prefix
-// TODO(HiDeoo) tabindex on pre (or maybe not https://github.com/alecthomas/chroma/pull/736)
+if (filePath && fileMatch && codeToDisplay) {
+  const match = codeToDisplay.match(new RegExp(fileMatch))
+
+  if (!match || !match[1]) {
+    throw new Error(`The file at ${filePath} does not contains a match for the regex '${fileMatch}'.`)
+  }
+
+  codeToDisplay = match[1]
+}
 ---
 
 <script>
