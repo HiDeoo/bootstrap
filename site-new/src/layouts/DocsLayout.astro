@@ -3,6 +3,7 @@ import type { MarkdownHeading } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 import { getConfig } from '../libs/config'
 import type { LayoutOverridesHTMLAttributes } from '../libs/layout'
+import { getSlug } from '../libs/utils'
 import Ads from '../components/Ads.astro'
 import BaseLayout from './BaseLayout.astro'
 import DocsSidebar from '../components/DocsSidebar.astro'
@@ -104,8 +105,7 @@ if (frontmatter.toc) {
             <div class="row g-3">
               {frontmatter.sections.map((section) => (
                 <div class="col-md-6">
-                  {/* TODO(HiDeoo) Fix URLs and sanitize them */}
-                  <a class="d-block text-decoration-none" href="../{{ urlize .title }}/">
+                  <a class="d-block text-decoration-none" href={`./${getSlug(section.title)}/`}>
                     <strong class="d-block h5 mb-0">{section.title}</strong>
                     <span class="text-secondary">{section.description}</span>
                   </a>
