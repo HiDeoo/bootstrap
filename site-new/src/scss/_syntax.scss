@@ -38,9 +38,33 @@
 }
 
 .highlight pre code {
-  // TODO(HiDeoo) Check all `sh` code blocks and make sure this is really what we want.
-  // Prevent token highlighting for the shell language.
-  &.language-sh .token { color: var(--bs-body-color); }
+  // Prevent token highlighting for the shell and PowerShell languages.
+  &.language-bash,
+  &.language-powershell,
+  &.language-sh {
+    .token {
+      color: var(--bs-body-color);
+    }
+  }
+
+  // Shell prefix.
+  &.language-bash,
+  &.language-sh {
+    .token.prefix::before {
+      color: var(--base03);
+      content: "$ ";
+      user-select: none;
+    }
+  }
+
+  // PowerShell prefix.
+  &.language-powershell {
+    .token.prefix::before {
+      color: var(--base0C);
+      content: "PM> ";
+      user-select: none;
+    }
+  }
 
   // All values (var, hex, units, etc.) are not tokenized individually.
   &.language-scss { color: var(--base08); }

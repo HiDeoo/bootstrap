@@ -9,6 +9,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { getConfig } from './config'
 import { rehypeBsTable } from './rehype'
 import { remarkBsConfig, remarkBsDocsref } from './remark'
+import { configurePrism } from './prism'
 
 // TODO(HiDeoo) Fix path when moving to `site`
 // The docs directory path relative to the root of the project.
@@ -28,6 +29,8 @@ const staticFileAliases = {
 const headingsRangeRegex = new RegExp(`^h[${getConfig().anchors.min}-${getConfig().anchors.max}]$`)
 
 export function bootstrap(): AstroIntegration[] {
+  configurePrism()
+
   return [
     bootstrap_auto_import(),
     {

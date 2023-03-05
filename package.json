@@ -121,6 +121,7 @@
     "@stackblitz/sdk": "^1.8.2",
     "@types/bootstrap": "^5.2.6",
     "@types/js-yaml": "^4.0.5",
+    "@types/prismjs": "^1.26.0",
     "astro": "^2.0.14",
     "astro-auto-import": "^0.2.1",
     "autoprefixer": "^10.4.13",
