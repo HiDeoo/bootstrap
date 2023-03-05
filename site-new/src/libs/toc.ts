@@ -30,6 +30,10 @@ export function generateToc(allHeadings: MarkdownHeading[]) {
 }
 
 function getEntryChildrenAtDepth(entry: TocEntry, depth: number): TocEntry['children'] {
+  if (!entry) {
+    return []
+  }
+
   return depth === 1 ? entry.children : getEntryChildrenAtDepth(entry.children[entry.children.length - 1], depth - 1)
 }
 
