@@ -8,7 +8,7 @@ import Code from '../../../components/shortcodes/Code.astro'
 export async function getStaticPaths() {
   return docsPages.map((docsPage) => {
     return {
-      params: { slug: docsPage.slug, version: getConfig().params.docs_version },
+      params: { slug: docsPage.slug, version: getConfig().docs_version },
       props: docsPage,
     }
   })

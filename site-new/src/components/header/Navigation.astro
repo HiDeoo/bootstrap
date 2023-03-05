@@ -45,11 +45,7 @@ const { addedIn, layout, title } = Astro.props
     </a>
 
     <div class="d-flex">
-      {
-        layout === 'docs' && (
-          <div class="bd-search" id="docsearch" data-bd-docs-version={getConfig().params.docs_version} />
-        )
-      }
+      {layout === 'docs' && <div class="bd-search" id="docsearch" data-bd-docs-version={getConfig().docs_version} />}
 
       <button
         class="navbar-toggler d-flex d-lg-none order-3 p-2"
@@ -89,9 +85,9 @@ const { addedIn, layout, title } = Astro.props
             text="Docs"
           />
           <LinkItem active={title === 'Examples'} href={getVersionedDocsPath('examples/')} text="Examples" />
-          <LinkItem href={getConfig().params.icons} target="_blank" rel="noopener" text="Icons" />
-          <LinkItem href={getConfig().params.themes} target="_blank" rel="noopener" text="Themes" />
-          <LinkItem href={getConfig().params.blog} target="_blank" rel="noopener" text="Blog" />
+          <LinkItem href={getConfig().icons} target="_blank" rel="noopener" text="Icons" />
+          <LinkItem href={getConfig().themes} target="_blank" rel="noopener" text="Themes" />
+          <LinkItem href={getConfig().blog} target="_blank" rel="noopener" text="Blog" />
         </ul>
 
         <hr class="d-lg-none text-white-50" />
@@ -99,7 +95,7 @@ const { addedIn, layout, title } = Astro.props
         <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
           <!-- TODO(HiDeoo) should be a LinkItem but requires some refactors first -->
           <li class="nav-item col-6 col-lg-auto">
-            <a class="nav-link py-2 px-0 px-lg-2" href={getConfig().params.github_org} target="_blank" rel="noopener">
+            <a class="nav-link py-2 px-0 px-lg-2" href={getConfig().github_org} target="_blank" rel="noopener">
               <GitHubIcon class="navbar-nav-svg" height={16} width={16} />
               <small class="d-lg-none ms-2">GitHub</small>
             </a>
@@ -108,7 +104,7 @@ const { addedIn, layout, title } = Astro.props
           <li class="nav-item col-6 col-lg-auto">
             <a
               class="nav-link py-2 px-0 px-lg-2"
-              href={`https://twitter.com/${getConfig().params.twitter}`}
+              href={`https://twitter.com/${getConfig().twitter}`}
               target="_blank"
               rel="noopener"
             >
@@ -118,12 +114,7 @@ const { addedIn, layout, title } = Astro.props
           </li>
           <!-- TODO(HiDeoo) should be a LinkItem but requires some refactors first -->
           <li class="nav-item col-6 col-lg-auto">
-            <a
-              class="nav-link py-2 px-0 px-lg-2"
-              href={getConfig().params.opencollective}
-              target="_blank"
-              rel="noopener"
-            >
+            <a class="nav-link py-2 px-0 px-lg-2" href={getConfig().opencollective} target="_blank" rel="noopener">
               <OpenCollectiveIcon class="navbar-nav-svg" height={16} width={16} />
               <small class="d-lg-none ms-2">Open Collective</small>
             </a>

@@ -16,7 +16,7 @@ const bsJsLinkProps: HTMLAttributes<'script'> = {
 
 if (import.meta.env.PROD) {
   bsJsLinkProps.crossorigin = 'anonymous'
-  bsJsLinkProps.integrity = getConfig().params.cdn.js_bundle_hash
+  bsJsLinkProps.integrity = getConfig().cdn.js_bundle_hash
 }
 ---
 

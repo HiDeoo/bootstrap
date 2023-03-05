@@ -8,7 +8,7 @@ import type { Element } from 'hast'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { getConfig } from './config'
 import { rehypeBsTable } from './rehype'
-import { remarkBsParam, remarkBsDocsref } from './remark'
+import { remarkBsConfig, remarkBsDocsref } from './remark'
 
 // TODO(HiDeoo) Fix path when moving to `site`
 // The docs directory path relative to the root of the project.
@@ -25,7 +25,7 @@ const staticFileAliases = {
   '/docs/[version]/assets/img/favicons/favicon.ico': '/favicon.ico',
 }
 
-const headingsRangeRegex = new RegExp(`^h[${getConfig().params.anchors.min}-${getConfig().params.anchors.max}]$`)
+const headingsRangeRegex = new RegExp(`^h[${getConfig().anchors.min}-${getConfig().anchors.max}]$`)
 
 export function bootstrap(): AstroIntegration[] {
   return [
@@ -53,7 +53,7 @@ export function bootstrap(): AstroIntegration[] {
                 ],
                 rehypeBsTable,
               ],
-              remarkPlugins: [remarkBsParam, remarkBsDocsref],
+              remarkPlugins: [remarkBsConfig, remarkBsDocsref],
             },
           })
         },
@@ -99,7 +99,7 @@ function cleanPublicDirectory() {
 // the `/docs/${docs_version}/dist` URL.
 function copyBootstrap() {
   const source = path.join(process.cwd(), 'dist')
-  const destination = path.join(getDocsPublicPath(), 'docs', getConfig().params.docs_version, 'dist')
+  const destination = path.join(getDocsPublicPath(), 'docs', getConfig().docs_version, 'dist')
 
   fs.mkdirSync(destination, { recursive: true })
   fs.cpSync(source, destination, { recursive: true })
@@ -141,7 +141,7 @@ function copyStaticRecursively(source: string, destination: string) {
 }
 
 function replacePathVersionPlaceholder(name: string) {
-  return name.replace('[version]', getConfig().params.docs_version)
+  return name.replace('[version]', getConfig().docs_version)
 }
 
 function getDocsStaticPath() {

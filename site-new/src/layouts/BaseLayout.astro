@@ -35,10 +35,8 @@ type MarkdownProps = { frontmatter?: Partial<CollectionEntry<'docs'>['data']> }
 
 const { frontmatter, layout, overrides, robots } = Astro.props
 
-// TODO(HiDeoo) This should probably be refactored to use a content collection when I get a better understanding of the
-// structure of the docs.
 const title = Astro.props.title ?? frontmatter?.title ?? getConfig().title
-const description = frontmatter?.description ?? getConfig().params.description
+const description = frontmatter?.description ?? getConfig().description
 const thumbnail = frontmatter?.thumbnail ? `img/${frontmatter.thumbnail}` : 'brand/bootstrap-social.png'
 
 const bodyProps = overrides?.body ?? {}

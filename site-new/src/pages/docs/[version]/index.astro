@@ -5,7 +5,7 @@ import { getConfig, getVersionedDocsPath } from '../../../libs/config'
 export function getStaticPaths() {
   return [
     {
-      params: { version: getConfig().params.docs_version },
+      params: { version: getConfig().docs_version },
     },
   ]
 }

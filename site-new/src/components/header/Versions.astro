@@ -15,7 +15,7 @@ const isHome = Astro.url.pathname === '/'
 
 let versionsLink = ''
 
-if (layout === 'docs' && version === getConfig().params.docs_version) {
+if (layout === 'docs' && version === getConfig().docs_version) {
   versionsLink = `${slug}/`
 }
 // TODO(HiDeoo) Handle this when we have a single page layout
@@ -33,7 +33,7 @@ if (layout === 'docs' && version === getConfig().params.docs_version) {
     data-bs-display="static"
   >
     <span class="d-lg-none" aria-hidden="true">Bootstrap</span><span class="visually-hidden">Bootstrap&nbsp;</span> v{
-      getConfig().params.docs_version
+      getConfig().docs_version
     }
     <span class="visually-hidden">(switch to other versions)</span>
   </button>
@@ -43,9 +43,9 @@ if (layout === 'docs' && version === getConfig().params.docs_version) {
       <a
         class="dropdown-item d-flex align-items-center justify-content-between active"
         aria-current="true"
-        href={isHome ? '/' : `/docs/${getConfig().params.docs_version}/${versionsLink}`}
+        href={isHome ? '/' : `/docs/${getConfig().docs_version}/${versionsLink}`}
       >
-        Latest ({getConfig().params.docs_version}.x)
+        Latest ({getConfig().docs_version}.x)
         <svg class="bi"><use xlink:href="#check2"></use></svg>
       </a>
     </li>

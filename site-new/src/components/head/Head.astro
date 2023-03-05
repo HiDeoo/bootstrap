@@ -21,8 +21,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
 
 const isHome = Astro.url.pathname === '/'
 const pageTitle = isHome
-  ? `${getConfig().title} · ${getConfig().params.subtitle}`
-  : `${title} · ${getConfig().title} v${getConfig().params.docs_version}`
+  ? `${getConfig().title} · ${getConfig().subtitle}`
+  : `${title} · ${getConfig().title} v${getConfig().docs_version}`
 ---
 
 <meta charset="UTF-8" />
@@ -32,10 +32,10 @@ const pageTitle = isHome
 <!--TODO: handle | markdownify -->
 <!-- TODO(HiDeoo) markdownify in a meta tag? -->
 
-<meta name="author" content={getConfig().params.authors} />
+<meta name="author" content={getConfig().authors} />
 <meta name="generator" content={Astro.generator} />
 <meta name="docsearch:language" content="en" />
-<meta name="docsearch:version" content={getConfig().params.docs_version} />
+<meta name="docsearch:version" content={getConfig().docs_version} />
 
 <title>{pageTitle}</title>
 

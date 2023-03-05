@@ -52,7 +52,7 @@ try {
   <div slot="pre" class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
     <a
       class="font-monospace text-body-secondary text-decoration-none small"
-      href={`${getConfig().params.repo}/blob/v${getConfig().params.current_version}/${file}`.replaceAll('\\', '/')}
+      href={`${getConfig().repo}/blob/v${getConfig().current_version}/${file}`.replaceAll('\\', '/')}
     >
       {file}
     </a>

@@ -18,7 +18,7 @@ const bsCssLinkProps: HTMLAttributes<'link'> = {
 
 if (import.meta.env.PROD) {
   bsCssLinkProps.crossorigin = 'anonymous'
-  bsCssLinkProps.integrity = direction === 'rtl' ? getConfig().params.cdn.css_rtl_hash : getConfig().params.cdn.css_hash
+  bsCssLinkProps.integrity = direction === 'rtl' ? getConfig().cdn.css_rtl_hash : getConfig().cdn.css_hash
 }
 ---
 
