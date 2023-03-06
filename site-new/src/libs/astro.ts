@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import mdx from '@astrojs/mdx'
+import sitemap from '@astrojs/sitemap'
 import type { AstroIntegration } from 'astro'
 import autoImport from 'astro-auto-import'
 import type { Element } from 'hast'
@@ -26,9 +27,14 @@ const staticFileAliases = {
   '/docs/[version]/assets/img/favicons/favicon.ico': '/favicon.ico',
 }
 
+// A list of pages that will be excluded from the sitemap.
+const sitemapExcludes = ['/404', '/docs', `/docs/${getConfig().docs_version}`]
+
 const headingsRangeRegex = new RegExp(`^h[${getConfig().anchors.min}-${getConfig().anchors.max}]$`)
 
 export function bootstrap(): AstroIntegration[] {
+  const sitemapExcludedUrls = sitemapExcludes.map((url) => `${getConfig().baseURL}${url}/`)
+
   configurePrism()
 
   return [
@@ -69,6 +75,9 @@ export function bootstrap(): AstroIntegration[] {
       },
     },
     mdx(),
+    sitemap({
+      filter: (page) => sitemapFilter(page, sitemapExcludedUrls),
+    }),
   ]
 }
 
@@ -157,4 +166,12 @@ function getDocsPublicPath() {
 
 function getDocsPath() {
   return path.join(process.cwd(), docsDirectory)
+}
+
+function sitemapFilter(page: string, excludedUrls: string[]) {
+  if (excludedUrls.includes(page)) {
+    return false
+  }
+
+  return true
 }

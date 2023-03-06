@@ -1,18 +1,17 @@
-export async function get() {
+import type { APIRoute } from 'astro'
+
+export const get: APIRoute = function get({ site }) {
   const isProduction = import.meta.env.PROD
   // TODO(HiDeoo) Test this works as expected
   const isNetlify = import.meta.env.NETLIFY === 'true'
 
   const allowCrawling = !isNetlify && isProduction
 
-  const body = `# www.robotstxt.org
-
-${allowCrawling ? '# Allow crawling of all content' : ''}
+  return {
+    body: `# www.robotstxt.org${allowCrawling ? '\n# Allow crawling of all content' : ''}
 User-agent: *
 Disallow: ${allowCrawling ? '' : '/'}
-`
-
-  // TODO(HiDeoo) Sitemap
-
-  return { body }
+Sitemap: ${new URL('sitemap-index.xml', site)}
+`,
+  }
 }

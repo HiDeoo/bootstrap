@@ -110,6 +110,7 @@
   "devDependencies": {
     "@astrojs/mdx": "^0.17.0",
     "@astrojs/prism": "^2.0.0",
+    "@astrojs/sitemap": "^1.1.0",
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
