@@ -147,7 +147,7 @@ function replacePathVersionPlaceholder(name: string) {
   return name.replace('[version]', getConfig().docs_version)
 }
 
-function getDocsStaticPath() {
+export function getDocsStaticPath() {
   return path.join(getDocsPath(), 'static')
 }
 
