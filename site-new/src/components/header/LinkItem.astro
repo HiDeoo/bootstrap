@@ -11,8 +11,6 @@ interface Props {
 const { active, class: className, track, ...props } = Astro.props
 
 const content = await Astro.slots.render('default')
-
-// TODO(HiDeoo) Test onclick handlers
 ---
 
 <li class="nav-item col-6 col-lg-auto">

@@ -120,6 +120,7 @@
     "@rollup/plugin-replace": "^5.0.2",
     "@stackblitz/sdk": "^1.8.2",
     "@types/bootstrap": "^5.2.6",
+    "@types/google.analytics": "^0.0.42",
     "@types/js-yaml": "^4.0.5",
     "@types/prismjs": "^1.26.0",
     "astro": "^2.0.14",
