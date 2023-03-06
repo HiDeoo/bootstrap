@@ -23,12 +23,18 @@ const dataDefinitions = {
       user: z.string(),
     })
     .array(),
-  translations: z
+  examples: z
     .object({
-      name: z.string(),
-      code: zLanguageCode,
+      category: z.string(),
+      external: z.boolean().optional(),
       description: z.string(),
-      url: z.string().url(),
+      examples: z
+        .object({
+          description: z.string(),
+          name: z.string(),
+          url: z.string().optional(),
+        })
+        .array(),
     })
     .array(),
   grays: zNamedHexColors(9),
@@ -77,6 +83,14 @@ const dataDefinitions = {
       // Add a `title` property to each theme color object being the capitalized version of the `name` property.
       return val.map((themeColor) => ({ ...themeColor, title: capitalizeFirstLetter(themeColor.name) }))
     }),
+  translations: z
+    .object({
+      name: z.string(),
+      code: zLanguageCode,
+      description: z.string(),
+      url: z.string().url(),
+    })
+    .array(),
 } satisfies Record<string, DataSchema>
 
 let data = new Map<DataType, z.infer<DataSchema>>()
