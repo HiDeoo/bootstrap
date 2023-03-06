@@ -79,46 +79,35 @@ const { addedIn, layout, title } = Astro.props
       <div class="offcanvas-body p-4 pt-0 p-lg-0">
         <hr class="d-lg-none text-white-50" />
         <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav">
-          <LinkItem
-            active={layout === 'docs'}
-            href={getVersionedDocsPath('getting-started/introduction/')}
-            text="Docs"
-          />
-          <LinkItem active={title === 'Examples'} href={getVersionedDocsPath('examples/')} text="Examples" />
-          <LinkItem href={getConfig().icons} target="_blank" rel="noopener" text="Icons" />
-          <LinkItem href={getConfig().themes} target="_blank" rel="noopener" text="Themes" />
-          <LinkItem href={getConfig().blog} target="_blank" rel="noopener" text="Blog" />
+          <LinkItem active={layout === 'docs'} href={getVersionedDocsPath('getting-started/introduction/')} track>
+            Docs
+          </LinkItem>
+          <LinkItem active={title === 'Examples'} href={getVersionedDocsPath('examples/')} track>Examples</LinkItem>
+          <LinkItem href={getConfig().icons} target="_blank" rel="noopener" track>Icons</LinkItem>
+          <LinkItem href={getConfig().themes} target="_blank" rel="noopener" track>Themes</LinkItem>
+          <LinkItem href={getConfig().blog} target="_blank" rel="noopener" track>Blog</LinkItem>
         </ul>
 
         <hr class="d-lg-none text-white-50" />
 
         <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
-          <!-- TODO(HiDeoo) should be a LinkItem but requires some refactors first -->
-          <li class="nav-item col-6 col-lg-auto">
-            <a class="nav-link py-2 px-0 px-lg-2" href={getConfig().github_org} target="_blank" rel="noopener">
-              <GitHubIcon class="navbar-nav-svg" height={16} width={16} />
-              <small class="d-lg-none ms-2">GitHub</small>
-            </a>
-          </li>
-          <!-- TODO(HiDeoo) should be a LinkItem but requires some refactors first -->
-          <li class="nav-item col-6 col-lg-auto">
-            <a
-              class="nav-link py-2 px-0 px-lg-2"
-              href={`https://twitter.com/${getConfig().twitter}`}
-              target="_blank"
-              rel="noopener"
-            >
-              <TwitterIcon class="navbar-nav-svg" height={16} width={16} />
-              <small class="d-lg-none ms-2">Twitter</small>
-            </a>
-          </li>
-          <!-- TODO(HiDeoo) should be a LinkItem but requires some refactors first -->
-          <li class="nav-item col-6 col-lg-auto">
-            <a class="nav-link py-2 px-0 px-lg-2" href={getConfig().opencollective} target="_blank" rel="noopener">
-              <OpenCollectiveIcon class="navbar-nav-svg" height={16} width={16} />
-              <small class="d-lg-none ms-2">Open Collective</small>
-            </a>
-          </li>
+          <LinkItem class="nav-link py-2 px-0 px-lg-2" href={getConfig().github_org} target="_blank" rel="noopener">
+            <GitHubIcon class="navbar-nav-svg" height={16} width={16} />
+            <small class="d-lg-none ms-2">GitHub</small>
+          </LinkItem>
+          <LinkItem
+            class="nav-link py-2 px-0 px-lg-2"
+            href={`https://twitter.com/${getConfig().twitter}`}
+            target="_blank"
+            rel="noopener"
+          >
+            <TwitterIcon class="navbar-nav-svg" height={16} width={16} />
+            <small class="d-lg-none ms-2">Twitter</small>
+          </LinkItem>
+          <LinkItem class="nav-link py-2 px-0 px-lg-2" href={getConfig().opencollective} target="_blank" rel="noopener">
+            <OpenCollectiveIcon class="navbar-nav-svg" height={16} width={16} />
+            <small class="d-lg-none ms-2">Open Collective</small>
+          </LinkItem>
           <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
             <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
             <hr class="d-lg-none my-2 text-white-50" />
