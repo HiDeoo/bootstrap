@@ -1,3 +1,7 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import { getDocsFsPath } from './path'
+
 export interface ExampleFrontmatter {
   body_class?: string
   direction?: 'rtl' | undefined
@@ -9,11 +13,9 @@ export interface ExampleFrontmatter {
 }
 
 export function getExamplesAssets() {
-  const examplesAssets = import.meta.glob('../assets/examples/**/*.!(html)', { as: 'raw' })
+  const source = path.join(getDocsFsPath(), 'src/assets/examples')
 
-  return Object.keys(examplesAssets).map((path) => {
-    return sanitizeAssetPath(path)
-  })
+  return getExamplesAssetsRecursively(source)
 }
 
 export function getExampleNameFromPagePath(examplePath: string) {
@@ -24,6 +26,20 @@ export function getExampleNameFromPagePath(examplePath: string) {
   }
 
   return matches[1]
+}
+
+function getExamplesAssetsRecursively(source: string, assets: string[] = []) {
+  const entries = fs.readdirSync(source, { withFileTypes: true })
+
+  for (const entry of entries) {
+    if (entry.isFile() && !entry.name.endsWith('.astro')) {
+      assets.push(sanitizeAssetPath(path.join(source, entry.name)))
+    } else if (entry.isDirectory()) {
+      getExamplesAssetsRecursively(path.join(source, entry.name), assets)
+    }
+  }
+
+  return assets
 }
 
 function sanitizeAssetPath(assetPath: string) {
