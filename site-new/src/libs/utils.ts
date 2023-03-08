@@ -24,3 +24,7 @@ export function getSequence(start: number, end: number, step = 1) {
 export function getSlug(str: string) {
   return slug(str).replace(/--+/g, '-')
 }
+
+export function trimLeadingAndTrailingSlashes(str: string) {
+  return str.replace(/^\/+|\/+$/g, '')
+}

@@ -1,3 +1,4 @@
+import type { AstroInstance } from 'astro'
 import fs from 'node:fs'
 import path from 'node:path'
 import { getDocsFsPath } from './path'
@@ -16,6 +17,10 @@ export function getExamplesAssets() {
   const source = path.join(getDocsFsPath(), 'src/assets/examples')
 
   return getExamplesAssetsRecursively(source)
+}
+
+export function getAliasedExamplesPages(pages: AstroInstance[]) {
+  return pages.filter(isAliasedAstroInstance)
 }
 
 export function getExampleNameFromPagePath(examplePath: string) {
@@ -51,3 +56,9 @@ function sanitizeAssetPath(assetPath: string) {
 
   return matches[1]
 }
+
+function isAliasedAstroInstance(page: AstroInstance): page is AliasedAstroInstance {
+  return (page as AliasedAstroInstance).aliases !== undefined
+}
+
+type AliasedAstroInstance = AstroInstance & { aliases: string | string[] }
