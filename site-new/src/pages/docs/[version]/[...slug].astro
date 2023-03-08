@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import DocsLayout from '../../../layouts/DocsLayout.astro'
-import { getConfig } from '../../../libs/config'
-import { docsPages } from '../../../libs/content'
-import Code from '../../../components/shortcodes/Code.astro'
+import DocsLayout from '@layouts/DocsLayout.astro'
+import { getConfig } from '@libs/config'
+import { docsPages } from '@libs/content'
+import Code from '@shortcodes/Code.astro'
 
 export async function getStaticPaths() {
   return docsPages.map((docsPage) => {

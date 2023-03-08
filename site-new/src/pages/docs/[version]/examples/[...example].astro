@@ -1,7 +1,7 @@
 ---
-import ExamplesLayout from '../../../../layouts/ExamplesLayout.astro'
-import { getConfig } from '../../../../libs/config'
-import { getExampleNameFromPagePath, type ExampleFrontmatter } from '../../../../libs/examples'
+import ExamplesLayout from '@layouts/ExamplesLayout.astro'
+import { getConfig } from '@libs/config'
+import { getExampleNameFromPagePath, type ExampleFrontmatter } from '@libs/examples'
 
 export async function getStaticPaths() {
   const examplesPages = await Astro.glob('../../../../assets/examples/**/*.astro')

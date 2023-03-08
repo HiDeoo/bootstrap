@@ -1,13 +1,13 @@
 ---
 import type { MarkdownHeading } from 'astro'
 import type { CollectionEntry } from 'astro:content'
-import { getConfig } from '../libs/config'
-import type { LayoutOverridesHTMLAttributes } from '../libs/layout'
-import { getSlug } from '../libs/utils'
-import Ads from '../components/Ads.astro'
-import BaseLayout from './BaseLayout.astro'
-import DocsSidebar from '../components/DocsSidebar.astro'
-import TableOfContents from '../components/TableOfContents.astro'
+import { getConfig } from '@libs/config'
+import type { LayoutOverridesHTMLAttributes } from '@libs/layout'
+import { getSlug } from '@libs/utils'
+import Ads from '@components/Ads.astro'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import DocsSidebar from '@components/DocsSidebar.astro'
+import TableOfContents from '@components/TableOfContents.astro'
 
 interface Props {
   frontmatter: CollectionEntry<'docs'>['data']
