@@ -8,9 +8,9 @@ const isDev = process.env.NODE_ENV === 'development'
 const site = isDev
   ? // In development mode, use the local dev server.
     'http://localhost:3000'
-  : process.env.HUGO_BASEURL !== undefined
+  : process.env.DEPLOY_PRIME_URL !== undefined
   ? // If deploying on Netlify, use the `DEPLOY_PRIME_URL` environment variable.
-    process.env.HUGO_BASEURL
+    process.env.DEPLOY_PRIME_URL
   : // Otherwise, use the `baseURL` value defined in the `config.yml` file.
     getConfig().baseURL
 
