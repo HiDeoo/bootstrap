@@ -71,7 +71,6 @@ const mainProps = overrides?.main ?? {}
 
     <Scripts layout={layout} />
 
-    <!-- TODO: handle correctly the footer system: blocks, layouts, examples without footers, etc. But for now, let'us a Footer.astro everywhere! -->
     <Footer />
 
     {frontmatter?.extra_js && frontmatter.extra_js.map((js) => <script is:inline async={js.async} src={js.src} />)}
