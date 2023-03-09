@@ -1,4 +1,5 @@
 ---
+import Markdown from '@astrojs/markdown-component'
 import type { MarkdownHeading } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 import { getConfig } from '@libs/config'
@@ -68,7 +69,7 @@ if (frontmatter.toc) {
           </div>
           <h1 class="bd-title mb-0" id="content">{frontmatter.title}</h1>
         </div>
-        <p class="bd-lead">{frontmatter.description}</p>
+        <p class="bd-lead"><Markdown content={frontmatter.description} /></p>
         <Ads />
       </div>
 

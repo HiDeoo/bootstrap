@@ -63,7 +63,7 @@ export function bootstrap(): AstroIntegration[] {
             },
           })
         },
-        'astro:config:done': ({}) => {
+        'astro:config:done': () => {
           cleanPublicDirectory()
           copyBootstrap()
           copyStatic()

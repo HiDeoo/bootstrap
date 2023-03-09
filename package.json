@@ -108,6 +108,7 @@
     "@popperjs/core": "^2.11.6"
   },
   "devDependencies": {
+    "@astrojs/markdown-component": "^1.0.2",
     "@astrojs/mdx": "^0.18.0",
     "@astrojs/prism": "^2.1.0",
     "@astrojs/sitemap": "^1.2.0",
