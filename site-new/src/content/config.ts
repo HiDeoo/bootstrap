@@ -5,7 +5,6 @@ const docsSchema = z.object({
   aliases: z.string().or(z.string().array()).optional(),
   description: z.string(),
   direction: z.literal('rtl').optional(),
-  // TODO(HiDeoo) group
   extra_js: z
     .object({
       async: z.boolean().optional(),
