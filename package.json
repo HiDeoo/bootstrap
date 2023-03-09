@@ -102,7 +102,8 @@
     "astro-dev": "astro dev --root site-new",
     "astro-build": "astro build --root site-new",
     "astro-preview": "astro preview --root site-new",
-    "astro-lint": "prettier --config site-new/.prettierrc.json -c --cache site-new && astro check --root site-new && tsc -p site-new --noEmit"
+    "astro-lint": "prettier --config site-new/.prettierrc.json -c --cache site-new && astro check --root site-new && tsc -p site-new --noEmit",
+    "astro-netlify": "npm-run-all dist release-sri astro-build"
   },
   "peerDependencies": {
     "@popperjs/core": "^2.11.6"
