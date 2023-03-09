@@ -16,8 +16,6 @@ const isHome = Astro.url.pathname === '/'
 
 let versionsLink = ''
 
-console.log('🚨 [Versions.astro:26] Astro.url.pathname:', Astro.url.pathname, ' - ', getVersionedDocsPath(''))
-
 if (layout === 'docs' && version === getConfig().docs_version) {
   versionsLink = `${slug}/`
 } else if (layout === 'single' && Astro.url.pathname.startsWith(getVersionedDocsPath(''))) {
