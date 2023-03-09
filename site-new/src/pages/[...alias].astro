@@ -1,5 +1,5 @@
 ---
-import type { GetStaticPathsItem } from 'astro'
+import type { InferGetStaticPropsType } from 'astro'
 import RedirectLayout from '@layouts/RedirectLayout.astro'
 import { getVersionedDocsPath } from '@libs/path'
 import { trimLeadingAndTrailingSlashes } from '@libs/utils'
@@ -12,11 +12,11 @@ export async function getStaticPaths() {
     return aliases ? (Array.isArray(aliases) ? aliases : [aliases]) : []
   }
 
-  function getAliasStaticPath(alias: string, path: string): GetStaticPathsItem {
+  function getAliasStaticPath(alias: string, path: string) {
     return { params: { alias: trimLeadingAndTrailingSlashes(replaceConfigInText(alias)) }, props: { path } }
   }
 
-  const staticPaths: GetStaticPathsItem[] = []
+  const staticPaths = []
 
   const examplesPages = await Astro.glob('../assets/examples/**/*.astro')
   const aliasedExamplesPages = getAliasedExamplesPages(examplesPages)
@@ -42,9 +42,7 @@ export async function getStaticPaths() {
   return staticPaths.flat()
 }
 
-interface Props {
-  path: string
-}
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 const { path } = Astro.props
 ---

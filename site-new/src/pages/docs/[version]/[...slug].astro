@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from 'astro:content'
+import type { InferGetStaticPropsType } from 'astro'
 import DocsLayout from '@layouts/DocsLayout.astro'
 import { getConfig } from '@libs/config'
 import { docsPages } from '@libs/content'
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
   })
 }
 
-type Props = CollectionEntry<'docs'>
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 const { id, data, render } = Astro.props
 const { Content, headings, remarkPluginFrontmatter } = await render()

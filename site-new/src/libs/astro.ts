@@ -71,7 +71,8 @@ export function bootstrap(): AstroIntegration[] {
         },
       },
     },
-    mdx(),
+    // https://github.com/withastro/astro/issues/6475
+    mdx() as AstroIntegration,
     sitemap({
       filter: (page) => sitemapFilter(page, sitemapExcludedUrls),
     }),

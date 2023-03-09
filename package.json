@@ -108,9 +108,9 @@
     "@popperjs/core": "^2.11.6"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^0.17.0",
-    "@astrojs/prism": "^2.0.0",
-    "@astrojs/sitemap": "^1.1.0",
+    "@astrojs/mdx": "^0.18.0",
+    "@astrojs/prism": "^2.1.0",
+    "@astrojs/sitemap": "^1.2.0",
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
@@ -125,7 +125,7 @@
     "@types/js-yaml": "^4.0.5",
     "@types/mime": "^3.0.1",
     "@types/prismjs": "^1.26.0",
-    "astro": "^2.0.14",
+    "astro": "^2.1.2",
     "astro-auto-import": "^0.2.1",
     "autoprefixer": "^10.4.13",
     "bundlewatch": "^0.3.3",
