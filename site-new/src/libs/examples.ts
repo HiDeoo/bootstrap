@@ -1,17 +1,26 @@
 import type { AstroInstance } from 'astro'
 import fs from 'node:fs'
 import path from 'node:path'
+import { z } from 'zod'
 import { getDocsFsPath } from './path'
 
-export interface ExampleFrontmatter {
-  body_class?: string
-  direction?: 'rtl' | undefined
-  extra_css?: string[]
-  extra_js?: { async?: boolean; src: string }[]
-  html_class?: string
-  include_js?: boolean
-  title: string
-}
+export const exampleFrontmatterSchema = z.object({
+  body_class: z.string().optional(),
+  direction: z.literal('rtl').optional(),
+  extra_css: z.string().array().optional(),
+  extra_js: z
+    .object({
+      async: z.boolean().optional(),
+      src: z.string(),
+    })
+    .array()
+    .optional(),
+  html_class: z.string().optional(),
+  include_js: z.boolean().optional(),
+  title: z.string(),
+})
+
+export type ExampleFrontmatter = z.infer<typeof exampleFrontmatterSchema>
 
 export function getExamplesAssets() {
   const source = path.join(getDocsFsPath(), 'src/assets/examples')
