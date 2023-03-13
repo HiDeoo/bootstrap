@@ -28,6 +28,13 @@ const docsCollection = defineCollection({
   schema: docsSchema,
 })
 
+const calloutsSchema = z.object({})
+
+const calloutsCollection = defineCollection({
+  schema: calloutsSchema,
+})
+
 export const collections = {
   docs: docsCollection,
+  callouts: calloutsCollection,
 }
