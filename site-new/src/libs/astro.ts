@@ -11,7 +11,13 @@ import { getConfig } from './config'
 import { rehypeBsTable } from './rehype'
 import { remarkBsConfig, remarkBsDocsref } from './remark'
 import { configurePrism } from './prism'
-import { docsDirectory, getDocsFsPath, getDocsPublicFsPath, getDocsStaticFsPath } from './path'
+import {
+  docsDirectory,
+  getDocsFsPath,
+  getDocsPublicFsPath,
+  getDocsStaticFsPath,
+  validateVersionedDocsPaths,
+} from './path'
 
 // A list of directories in `src/components` that contains components that will be auto imported in all pages for
 // convenience.
@@ -68,6 +74,9 @@ export function bootstrap(): AstroIntegration[] {
           copyBootstrap()
           copyStatic()
           aliasStatic()
+        },
+        'astro:build:done': ({ dir }) => {
+          validateVersionedDocsPaths(dir)
         },
       },
     },
